@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+Route::get('email/verify/{id}', 'Auth\VerificationController@emailVerify')->name('auth.email.verify');
 
 Route::get('/home', 'HomeController@index')->name('home');

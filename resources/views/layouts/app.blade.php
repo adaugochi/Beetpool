@@ -64,8 +64,11 @@
             </div><!-- .nk-split-content -->
         </div><!-- .nk-split -->
     </div><!-- app body @e -->
-    <!-- JavaScript -->
+
+
     <script src="{{ asset('dashlite/js/bundle.js') }}"></script>
     <script src="{{ asset('dashlite/js/scripts.js') }}"></script>
+
+    @include('elements.flash-messages')
 </body>
 </html>

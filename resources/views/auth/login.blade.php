@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Login')
 @section('bg-img')
-    <img src="{{ asset('img/authentication.svg') }}">
+    <img src="{{ asset('img/authentication.svg') }}" alt="Login">
 @endsection
 
 @section('content')
