@@ -57,6 +57,7 @@
 
     <script src="{{ asset('dashlite/js/bundle.js') }}"></script>
     <script src="{{ asset('dashlite/js/scripts.js') }}"></script>
+    @include('elements.complete-profile')
 </body>
 
 </html>

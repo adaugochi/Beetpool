@@ -19,27 +19,43 @@
                     <li class="nk-menu-heading">
                         <h6 class="overline-title text-primary-alt">Navigations</h6>
                     </li><!-- .nk-menu-item -->
+
                     <li class="nk-menu-item">
-                        <a href="#" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-growth"></em></span>
+                        <a href="{{ route('home') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
                             <span class="nk-menu-text">Dashboard</span>
                         </a>
-                    </li><!-- .nk-menu-item -->
+                    </li>
+                    @if(auth()->user()->is_profile_complete == 1)
+
+                    <li class="nk-menu-item">
+                        <a href="#" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-invest"></em></span>
+                            <span class="nk-menu-text">Investment</span>
+                        </a>
+                    </li>
 
                     <li class="nk-menu-item has-sub">
                         <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                            <span class="nk-menu-text">User Manage</span>
+                            <span class="nk-menu-icon"><em class="icon ni ni-money"></em></span>
+                            <span class="nk-menu-text">Purchase</span>
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="#" class="nk-menu-link"><span class="nk-menu-text">Regular</span></a>
+                                <a href="#" class="nk-menu-link"><span class="nk-menu-text">Buy</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="#" class="nk-menu-link"><span class="nk-menu-text">Compact</span></a>
+                                <a href="#" class="nk-menu-link"><span class="nk-menu-text">Sell</span></a>
                             </li>
                         </ul><!-- .nk-menu-sub -->
-                    </li><!-- .nk-menu-item -->
+                    </li>
+                    @endif
+                    <li class="nk-menu-item">
+                        <a href="#" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                            <span class="nk-menu-text">Profile Setting</span>
+                        </a>
+                    </li>
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

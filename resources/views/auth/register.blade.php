@@ -8,7 +8,7 @@
 @section('content')
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h5 class="nk-block-title">Sign-up</h5>
+            <h5 class="nk-block-title">Sign Up</h5>
             <div class="nk-block-des">
                 <p>Create New Beetpool Account</p>
             </div>
@@ -55,10 +55,10 @@
             </label>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Sign Up</button>
         </div>
     </form><!-- form -->
     <div class="form-note-s2 pt-4">
-        Already have an account? <a href="{{ url('login') }}"><strong>Sign in instead</strong></a>
+        Already have an account? <a href="{{ url('login') }}">Sign in instead</a>
     </div>
 @endsection
