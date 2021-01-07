@@ -54,7 +54,6 @@ class LoginController extends Controller
 
     public function login()
     {
-        //dd()
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             if($user->email_verified_at !== NULL) {

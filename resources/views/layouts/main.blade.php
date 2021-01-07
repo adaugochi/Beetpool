@@ -32,12 +32,12 @@
                                     <div class="nk-block-head nk-block-head-lg wide-sm">
                                         <div class="nk-block-head-content">
                                             <div class="nk-block-head-sub">
-                                                <a class="back-to" href="#">
+                                                <a class="back-to" href="@yield('back')">
                                                     <em class="icon ni ni-arrow-left"></em>
-                                                    <span>Back</span>
+                                                    <span>@yield('back-title')</span>
                                                 </a>
                                             </div>
-                                            <h2 class="nk-block-title fw-normal">Form Elements</h2>
+                                            <h2 class="nk-block-title fw-normal">@yield('content-title')</h2>
                                         </div>
                                     </div>
                                     <div class="nk-block nk-block-lg">

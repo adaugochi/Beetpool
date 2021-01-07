@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('admin.layouts.main')
 @section('title', 'Home')
 @section('back', '/')
 @section('back-title', 'Go Back')

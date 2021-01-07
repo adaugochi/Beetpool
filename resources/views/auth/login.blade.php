@@ -37,14 +37,16 @@
                     <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                 </a>
                 <input type="password" class="form-control form-control-lg" name="password"
-                       id="password" placeholder="Enter your passcode">
+                       id="password" placeholder="Enter your password">
             </div>
         </div>
         <div class="form-group">
             <button class="btn btn-lg btn-primary btn-block">Sign In</button>
         </div>
     </form><!-- form -->
-    <div class="form-note-s2 pt-4">
-        New on our platform? <a href="{{ url('register') }}">Create an account</a>
-    </div>
+    @if($loginRoute == route('login'))
+        <div class="form-note-s2 pt-4">
+            New on our platform? <a href="{{ url('register') }}">Create an account</a>
+        </div>
+    @endif
 @endsection
