@@ -1,0 +1,35 @@
+<div class="modal fade zoom" tabindex="-1" id="modalZoom">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Make An Investment Deposit</h3>
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('create-deposit') }}" method="post" class="form-validate">
+                    @csrf
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="form-label" for="default-03">Amount</label>
+                                <div class="form-control-wrap">
+                                    <div class="form-icon form-icon-left">
+                                        <em class="icon ni ni-sign-btc"></em>
+                                    </div>
+                                    <input type="text" class="form-control" id="default-03"
+                                           name="amount" placeholder="enter an amount" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success float-right mt-4">
+                        <span>Submit</span>
+                        <em class="icon ni ni-arrow-long-right"></em>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

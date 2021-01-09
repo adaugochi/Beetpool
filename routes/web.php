@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::get('email/verify/{id}', 'Auth\VerificationController@emailVerify')->name('auth.email.verify');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->group( function () {
     // Login routes
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/sign-in', 'Auth\AdminLoginController@signIn')->name('admin.sign-in');
@@ -41,3 +41,11 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/transactions', 'TransactionController@index')->name('transaction');
+Route::get('/deposits', 'TransactionController@getAlldeposits')->name('deposit');
+Route::post('/create-deposit', 'TransactionController@createDeposit')
+    ->name('create-deposit');
+Route::post('/update-deposit', 'TransactionController@updateDeposit')
+    ->name('update-deposit');
+Route::get('/deposit/qr-code/{id}', 'TransactionController@showWallet')
+    ->name('wallet-address');

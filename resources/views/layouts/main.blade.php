@@ -28,8 +28,8 @@
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
-                                <div class="components-preview wide-md mx-auto">
-                                    <div class="nk-block-head nk-block-head-lg wide-sm">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between g-3">
                                         <div class="nk-block-head-content">
                                             <div class="nk-block-head-sub">
                                                 <a class="back-to" href="@yield('back')">
@@ -37,12 +37,13 @@
                                                     <span>@yield('back-title')</span>
                                                 </a>
                                             </div>
-                                            <h2 class="nk-block-title fw-normal">@yield('content-title')</h2>
+                                            <h3 class="nk-block-title fw-normal">
+                                                @yield('content-title')
+                                            </h3>
                                         </div>
+                                        @yield('content-side')
                                     </div>
-                                    <div class="nk-block nk-block-lg">
-                                        @yield('content')
-                                    </div>
+                                    @yield('content')
                                 </div>
                             </div>
                         </div>
@@ -52,12 +53,13 @@
                 @include('elements.footer')
             </div>
         </div>
-        <!-- main @e -->
     </div>
 
     <script src="{{ asset('dashlite/js/bundle.js') }}"></script>
     <script src="{{ asset('dashlite/js/scripts.js') }}"></script>
+
     @include('elements.complete-profile')
+    @include('elements.flash-messages')
 </body>
 
 </html>
