@@ -31,7 +31,9 @@
                                         <div class="font-weight-bold fs-13px text-light">
                                             Available balance in BITCOIN
                                         </div>
-                                        <div class="number-lg amount">0.00</div><!--@convert($wallet_balance)-->
+                                        <div class="number-lg amount">
+                                            {{ $wallet_balance }}
+                                        </div>
                                     </div>
                                 </div><!-- .nk-wg7 -->
                             </div><!-- .card-inner -->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Referral;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,6 +63,13 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
+        if ($request->referral !== '') {
+            $referralUserId = User::where('username', $request->referral)->first()->id;
+            $referral = new Referral();
+            $referral->referral_user_id = $referralUserId;
+            $referral->user_id = $user->id;
+            $referral->save();
+        }
         return Redirect::to(route('auth.email.verify', $user->id))
             ->with(['success' => 'Registration was successful']);
     }

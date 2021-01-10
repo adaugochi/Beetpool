@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private $transaction;
+
     public function __construct()
     {
+        $this->transaction = new Transaction;
         $this->middleware(['auth', 'verified']);
     }
 
@@ -18,6 +22,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userId = auth()->user()->id;
+        $wallet_balance = $this->transaction->getBalance($userId);
+        return view('home', compact('wallet_balance'));
     }
 }

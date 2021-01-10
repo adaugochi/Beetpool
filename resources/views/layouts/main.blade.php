@@ -14,6 +14,7 @@
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('dashlite/css/dashlite.css') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('dashlite/css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -29,7 +30,7 @@
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
                                 <div class="nk-block-head nk-block-head-sm">
-                                    <div class="nk-block-between g-3">
+                                    <div class="nk-block-between mb-1">
                                         <div class="nk-block-head-content">
                                             <div class="nk-block-head-sub">
                                                 <a class="back-to" href="@yield('back')">

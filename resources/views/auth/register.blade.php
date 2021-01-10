@@ -16,6 +16,7 @@
     </div><!-- .nk-block-head -->
     <form action="{{ route('register') }}" method="post">
         @csrf
+        <input type="hidden" name="referral" value="{{ $referral ?? '' }}">
         <div class="form-group">
             <label class="form-label" for="name">Full Name</label>
             <input type="text" class="form-control form-control-lg @error('fullname') is-invalid @enderror"

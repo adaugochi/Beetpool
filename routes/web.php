@@ -19,6 +19,10 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 Route::get('email/verify/{id}', 'Auth\VerificationController@emailVerify')->name('auth.email.verify');
+Route::get('/register', function () {
+    $referral = request()->ref;
+    return view('auth.register', compact('referral'));
+})->name('register');
 
 Route::prefix('admin')->group( function () {
     // Login routes
@@ -55,3 +59,5 @@ Route::post('/update-deposit', 'TransactionController@updateDeposit')
     ->name('update-deposit');
 Route::get('/deposit/qr-code/{id}', 'TransactionController@showWallet')
     ->name('wallet-address');
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/save-profile', 'ProfileController@saveProfile')->name('save-profile');

@@ -25,6 +25,7 @@
                                         <span class="sub-text">Transaction ID & Wallet Address</span>
                                     </th>
                                     <th class="nk-tb-col"><span class="sub-text">Status</span></th>
+                                    <th class="nk-tb-col"><span class="sub-text">Created</span></th>
                                     <th class="nk-tb-col"><span class="sub-text">Action</span></th>
                                 </tr>
                             </thead>
@@ -62,6 +63,9 @@
                                             <span class="{{ $deposit->status == 'pending' ? 'text-warning' : 'text-success' }}">
                                                 {{ ucfirst($deposit->status) }}
                                             </span>
+                                        </td>
+                                        <td class="nk-tb-col">
+                                            <span>{{ $deposit->formatDate() }}</span>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">

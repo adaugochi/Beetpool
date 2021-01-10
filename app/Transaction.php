@@ -57,4 +57,36 @@ class Transaction extends Model
         }
         return $this->id;
     }
+
+    public function getBalance($user_id)
+    {
+        $balance = 0.00;
+        $deposit = 0.00;
+        $withdraw = 0.00;
+
+        $transactions = $this->where(['user_id' => $user_id, 'status' => self::APPROVED])->get();
+        if( sizeof($transactions) > 0 ) {
+            foreach ($transactions as $trx) {
+                if( $trx->transaction_type == self::DEPOSIT) {
+                    $deposit += (float) $trx->amount;
+                }
+
+                if( $trx->transaction_type == self::PURCHASE) {
+                    $withdraw += (float) $trx->amount;
+                }
+            }
+            $balance = (float) ($deposit + $withdraw);
+        }
+
+        return $balance;
+    }
+
+    /**
+     * @return false|string
+     * @author Maryfaith Mgbede <adaamgbede@gmail.com>
+     */
+    public function formatDate()
+    {
+        return date("jS F Y h:i A", strtotime($this->created_at));
+    }
 }

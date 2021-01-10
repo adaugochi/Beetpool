@@ -12,8 +12,10 @@
             <tr>
                 <td style="padding: 0 30px 20px">
                     <p style="margin-bottom: 10px;">Hi!</p>
-                    <p style="margin-bottom: 10px;">You are receiving this email because you have registered on our site.</p>
-                    <p style="margin-bottom: 10px;">Click the link below to activate your <b>Beetpool</b> account.</p>
+                    <p style="margin-bottom: 10px;">
+                        You are receiving this email because you have registered on our site.
+                        Click the link below to activate your <b>Beetpool</b> account.
+                    </p>
                     <p style="margin-bottom: 25px;">This link will expire in 15 minutes and can only be used once.</p>
                     <div style="text-align: center;">
                         <a href="{{ $actionUrl }}" style="background-color:#6576ff;border-radius:4px;color:#ffffff;display:inline-block;line-height:44px;text-transform:uppercase;padding: 0 30px">Verify Email</a>

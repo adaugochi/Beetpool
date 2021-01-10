@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Contants\EmailSubjects;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -43,7 +44,7 @@ class AdminResetPasswordNotification extends Notification
     {
         $fullName = $notifiable->fullname;
         return (new MailMessage)
-            ->subject('Reset Password')
+            ->subject(EmailSubjects::SUBJECT_RESET_PASSWORD)
             ->view('vendor.notifications.reset-password', compact('fullName'))
             ->action('Reset Password',
                 url(config('app.url') .

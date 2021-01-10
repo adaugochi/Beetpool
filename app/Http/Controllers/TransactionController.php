@@ -81,7 +81,7 @@ class TransactionController extends Controller
 
     public function showDeposits()
     {
-        $deposits = Transaction::where(['transaction_type' => Transaction::DEPOSIT])
+        $deposits = Transaction::where(['transaction_type' => Transaction::DEPOSIT, 'user_id' => auth()->user()->id])
             ->orderBy('created_at', 'DESC')->get();
         return view('transaction.deposit', compact('deposits'));
     }

@@ -4,8 +4,8 @@ namespace App\Contants;
 
 class EmailSubjects
 {
-    const SUBJECT_REVIEW = 'Your order is ready!';
-    const SUBJECT_REMINDER = 'Complete Your Brief';
+    const SUBJECT_RESET_PASSWORD = 'Reset Your Password';
+    const SUBJECT_APPROVE_DEPOSIT = 'Deposit Payment Approval';
     const SUBJECT_PAYMENT = 'Your payment has been received';
     const SUBJECT_AWAITING_PAYMENT = 'Awaiting Payment';
 }

@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Contants\EmailSubjects;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -41,7 +42,7 @@ class DepositApprovalNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Payment Approval')
+            ->subject(EmailSubjects::SUBJECT_APPROVE_DEPOSIT)
             ->view('vendor.notifications.deposit-approval');
     }
 
