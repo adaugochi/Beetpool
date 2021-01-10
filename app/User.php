@@ -4,6 +4,7 @@ namespace App;
 
 use App\Notifications\UserResetPasswordNotification;
 use App\Notifications\UserVerifyEmailNotification;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,6 +37,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new UserVerifyEmailNotification());
+        $this->notify(new VerifyEmail());
     }
 }

@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Contants\Message;
+use App\Notifications\DepositApprovalNotification;
 use App\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class TransactionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', 'verified'])->except('getAllDeposits');
     }
 
     public function index()
@@ -74,6 +76,24 @@ class TransactionController extends Controller
     {
         $deposits = Transaction::where(['transaction_type' => Transaction::DEPOSIT])
             ->orderBy('created_at', 'DESC')->get();
+        return view('admin.deposit', compact('deposits'));
+    }
+
+    public function showDeposits()
+    {
+        $deposits = Transaction::where(['transaction_type' => Transaction::DEPOSIT])
+            ->orderBy('created_at', 'DESC')->get();
         return view('transaction.deposit', compact('deposits'));
+    }
+
+    public function approveDeposit(Request $request)
+    {
+        $deposit = Transaction::where('id', $request->id)->first();
+        $deposit->status = Transaction::APPROVED;
+        Notification::send($deposit->user, new DepositApprovalNotification());
+        if ($deposit->save()){
+            return redirect()->back()->with(['success' => 'Transaction approved successfully']);
+        }
+        return redirect()->back()->with(['error' => 'failed transaction']);
     }
 }

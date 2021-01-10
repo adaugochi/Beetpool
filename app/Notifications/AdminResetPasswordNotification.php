@@ -41,15 +41,15 @@ class AdminResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $fullName = $notifiable->fullname;
         return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account')
+            ->subject('Reset Password')
+            ->view('vendor.notifications.reset-password', compact('fullName'))
             ->action('Reset Password',
                 url(config('app.url') .
                     route('admin.password.reset', [$this->token, 'email=' . $notifiable->email], false)
                 )
-            )
-            ->line('This password reset link will expire in 15 minutes.')
-            ->line('If you did not request a password reset, no further action is required');
+            );
     }
 
     /**

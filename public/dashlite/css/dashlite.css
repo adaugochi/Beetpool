@@ -8547,7 +8547,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before
 
 .dataTable td:focus { outline: none; }
 
-.datatable-wrap { border: 1px solid #e5e9f2; border-radius: 4px; }
+.datatable-wrap { border: 1px solid #e5e9f2; border-radius: 4px; overflow: auto;}
 
 .dtr-details { padding-left: 0.25rem; }
 

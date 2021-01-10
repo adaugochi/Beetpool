@@ -13,7 +13,7 @@
     <title>@yield('title') | Beetpool</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('dashlite/css/dashlite.css') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('dashlite/css/theme.css') }}">
+    {{--<link href="{{ asset('css/app.css') }}">--}}
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -40,9 +40,7 @@
                                         <h2 class="nk-block-title fw-normal">@yield('content-title')</h2>
                                     </div>
                                 </div>
-                                <div class="nk-block nk-block-lg">
-                                    @yield('content')
-                                </div>
+                                @yield('content')
                             </div>
                         </div>
                     </div>
@@ -57,6 +55,7 @@
 
 <script src="{{ asset('dashlite/js/bundle.js') }}"></script>
 <script src="{{ asset('dashlite/js/scripts.js') }}"></script>
-
+@include('elements.flash-messages')
+@yield('script')
 </body>
 </html>

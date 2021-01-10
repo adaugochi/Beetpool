@@ -3,24 +3,22 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class UserResetPasswordNotification extends Notification
+class DepositApprovalNotification extends Notification
 {
     use Queueable;
-
-    public $token;
 
     /**
      * Create a new notification instance.
      *
-     * @param $token
+     * @return void
      */
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
+        //
     }
 
     /**
@@ -42,15 +40,9 @@ class UserResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $fullName = $notifiable->fullname;
         return (new MailMessage)
-            ->subject('Reset Password')
-            ->view('vendor.notifications.reset-password', compact('fullName'))
-            ->action('Reset Password',
-                url(config('app.url') .
-                    route('password.reset', [$this->token, 'email=' . $notifiable->email], false)
-                )
-            );
+            ->subject('Payment Approval')
+            ->view('vendor.notifications.deposit-approval');
     }
 
     /**

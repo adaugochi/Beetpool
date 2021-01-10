@@ -11,7 +11,7 @@
             <span>Make A Deposit</span>
         </button>
     </div>
-    @include('partials.modal-deposit')
+    @include('partials.modal.modal-deposit')
 @endsection
 @section('content')
     <div class="nk-block mt-5">
