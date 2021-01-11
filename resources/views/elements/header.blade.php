@@ -67,13 +67,13 @@
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('profile') }}">
                                             <em class="icon ni ni-user-alt"></em>
                                             <span>View Profile</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('profile') }}">
                                             <em class="icon ni ni-setting-alt"></em>
                                             <span>Account Setting</span>
                                         </a>

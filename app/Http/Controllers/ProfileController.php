@@ -15,7 +15,9 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $countries = Country::all();
+        $countries = cache()->rememberForever('countries', function () {
+            return Country::all();
+        });
         $userId = auth()->user()->id;
         $user = User::findOrFail($userId);
         return view('profile.index', compact('user', 'countries'));

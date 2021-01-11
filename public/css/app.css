@@ -1,3 +1,7 @@
+.word-break {
+  word-break: break-word;
+}
+
 .empty-state {
   min-height: 300px;
   padding: 30px 0 20px;

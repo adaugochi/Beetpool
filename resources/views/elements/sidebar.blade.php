@@ -35,7 +35,7 @@
                         </li>
                         <li class="nk-menu-item">
                             <a href="{{ route('deposit') }}" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-invest"></em></span>
+                                <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
                                 <span class="nk-menu-text">Deposits</span>
                             </a>
                         </li>

@@ -82,7 +82,8 @@
                                                 </li>
                                                 @endif
                                                 <li class="nk-tb-action-hidden">
-                                                    <a href="{{ route('admin.view-deposit') }}" class="btn btn-trigger btn-icon"
+                                                    <a href="{{ route('admin.deposit', $deposit->id) }}"
+                                                       class="btn btn-trigger btn-icon"
                                                        data-toggle="tooltip" data-placement="top" title="View">
                                                         <em class="icon ni ni-eye-fill"></em>
                                                     </a>
@@ -108,7 +109,7 @@
                                                                 </li>
                                                                 @endif
                                                                 <li>
-                                                                    <a href="{{ route('admin.view-deposit') }}">
+                                                                    <a href="{{ route('admin.deposit', $deposit->id) }}">
                                                                         <em class="icon ni ni-eye"></em>
                                                                         <span>View Details</span>
                                                                     </a>

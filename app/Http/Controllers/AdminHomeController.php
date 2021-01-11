@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -24,5 +25,9 @@ class AdminHomeController extends Controller
         return view('admin.home');
     }
 
-
+    public function users()
+    {
+        $users = User::where('email_verified_at', '!==', '')->orderBy('created_at', 'DESC')->get();
+        return view('admin.user', compact('users'));
+    }
 }

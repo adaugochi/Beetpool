@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="nk-block nk-block-lg">
-            @if(sizeof($deposits) > 0)
+            @if(sizeof($deposits) < 0)
                 <div class="card card-bordered card-preview">
                     <div class="card-inner">
                         <table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
@@ -55,9 +55,9 @@
             @else
                 <div class="empty-state">
                     <span class="empty-state__icon">
-                        <em class="icon-grey ni ni-coins"></em>
+                        <em class="ni ni-coins"></em>
                     </span>
-                    <p class="empty-state__description mt-2">No transaction has been made yet.</p>
+                    <p class="empty-state__description mt-2">No deposit has been made yet.</p>
                 </div>
             @endif
         </div>

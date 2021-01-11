@@ -96,4 +96,10 @@ class TransactionController extends Controller
         }
         return redirect()->back()->with(['error' => 'failed transaction']);
     }
+
+    public function showDeposit($id)
+    {
+        $deposit = Transaction::findOrFail($id);
+        return view('admin.view-deposit', compact('deposit'));
+    }
 }

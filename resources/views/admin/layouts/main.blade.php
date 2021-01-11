@@ -13,7 +13,7 @@
     <title>@yield('title') | Beetpool</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('dashlite/css/dashlite.css') }}">
-    {{--<link href="{{ asset('css/app.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">

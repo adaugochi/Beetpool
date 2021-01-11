@@ -43,11 +43,11 @@ Route::prefix('admin')->group( function () {
     // Portal routes
     Route::get('/home', 'AdminHomeController@index')->name('admin.home');
     Route::get('/deposits', 'TransactionController@getAllDeposits')
-        ->name('admin.deposit')->middleware('auth:admin');
+        ->name('admin.deposits')->middleware('auth:admin');
     Route::post('/approve-deposit', 'TransactionController@approveDeposit')
         ->name('admin.approve-deposit')->middleware('auth:admin');
-    Route::get('/view-deposits', 'TransactionController@viewDeposit')
-        ->name('admin.view-deposit')->middleware('auth:admin');
+    Route::get('/deposits/{id}', 'TransactionController@showDeposit')
+        ->name('admin.deposit')->middleware('auth:admin');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
