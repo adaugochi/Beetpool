@@ -24,7 +24,9 @@ class CreateTransactionsTable extends Migration
             $table->string('status')->default('pending');
             $table->string('maturity_status')->nullable();
             $table->timestamp('maturity_date')->nullable();
-            $table->string('expected_returns')->nullable();
+            $table->string('roi')->nullable();
+            $table->string('expected_return')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -3,6 +3,16 @@
 @section('back', route('transaction'))
 @section('back-title', 'Transactions')
 @section('content-title', 'Deposit History')
+@section('content-side')
+    <div class="nk-block-head-content">
+        <button type="button" class="btn btn-success mt-4"
+                data-toggle="modal" data-target="#modalZoom">
+            <em class="icon ni ni-plus"></em>
+            <span>Make A Deposit</span>
+        </button>
+    </div>
+    @include('partials.modal.modal-deposit')
+@endsection
 @section('content')
     <div class="nk-block nk-block-lg">
         <div class="nk-block-head">
@@ -13,7 +23,7 @@
             </div>
         </div>
         <div class="nk-block nk-block-lg">
-            @if(sizeof($deposits) < 0)
+            @if(sizeof($deposits) > 0)
                 <div class="card card-bordered card-preview">
                     <div class="card-inner">
                         <table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
@@ -23,6 +33,7 @@
                                 <th class="nk-tb-col"><span class="sub-text">Amount</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Status</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Created</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Action</span></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,6 +56,36 @@
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ $deposit->formatDate() }}</span>
+                                    </td>
+                                    <td class="nk-tb-col nk-tb-col-tools">
+                                        <ul class="nk-tb-actions gx-1">
+                                            @if($deposit->transaction_id === null)
+                                                <li class="nk-tb-action-hidden">
+                                                    <a href="{{ route('wallet-address', $deposit->id) }}"
+                                                       class="btn btn-trigger btn-icon" data-toggle="tooltip"
+                                                       data-placement="top" title="Complete Transaction">
+                                                        <em class="icon ni ni-wallet-fill"></em>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <div class="dropdown">
+                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
+                                                           data-toggle="dropdown"><em class="icon ni ni-more-h"></em>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <ul class="link-list-opt no-bdr">
+                                                                <li>
+                                                                    <a href="{{ route('wallet-address', $deposit->id) }}">
+                                                                        <em class="icon ni ni-wallet"></em>
+                                                                        <span>Complete Your Transaction</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endif
+                                        </ul>
                                     </td>
                                 </tr><!-- .nk-tb-item  -->
                             @endforeach

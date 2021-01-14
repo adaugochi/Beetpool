@@ -74,7 +74,8 @@
                                                     <span class="eg-swal-approve btn btn-trigger btn-icon"
                                                        data-toggle="tooltip" data-placement="top" title="Approve">
                                                         <em class="icon ni ni-check-fill-c"></em>
-                                                        <form class="approveDeposit" action="/admin/approve-deposit" method="POST">
+                                                        <form class="approveDeposit" action="/admin/approve-deposit"
+                                                              method="POST">
                                                             @csrf
                                                             <input type='hidden' name="id" value="{{ $deposit->id }}">
                                                         </form>
@@ -114,9 +115,25 @@
                                                                         <span>View Details</span>
                                                                     </a>
                                                                 </li>
+                                                                @if($deposit->status === 'approved')
+                                                                <li>
+                                                                    <a href="#" data-toggle="modal"
+                                                                          data-target="#modalInvest{{ $deposit->id }}">
+                                                                        <em class="icon ni ni-invest"></em>
+                                                                        <span>Initiate Investment</span>
+                                                                    </a>
+                                                                </li>
+                                                                @endif
+
                                                             </ul>
                                                         </div>
                                                     </div>
+                                                    @include('partials.modal.modal-invest', [
+                                                        'name' => $deposit->user->full_name,
+                                                        'modalId' => 'modalInvest'. $deposit->id,
+                                                        'amount' => $deposit->amount,
+                                                        'id' => $deposit->id
+                                                    ])
                                                 </li>
                                             </ul>
                                         </td>

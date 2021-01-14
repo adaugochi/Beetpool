@@ -32,7 +32,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'phone_number' => 'required',
-            'country' => 'required',
+            'country_id' => 'required',
             'state' => 'required',
             'address' => 'required',
         ]);
@@ -42,7 +42,7 @@ class ProfileController extends Controller
             return redirect()->back()->with(['error' => 'Could not find this user']);
         }
         $user->phone_number = $request->phone_number;
-        $user->country = $request->country;
+        $user->country_id = $request->country_id;
         $user->state = $request->state;
         $user->address = $request->address;
         $user->is_profile_complete = 1;

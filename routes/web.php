@@ -48,6 +48,8 @@ Route::prefix('admin')->group( function () {
         ->name('admin.approve-deposit')->middleware('auth:admin');
     Route::get('/deposits/{id}', 'TransactionController@showDeposit')
         ->name('admin.deposit')->middleware('auth:admin');
+    Route::post('/deposits/invest', 'TransactionController@invest')
+        ->name('admin.invest')->middleware('auth:admin');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

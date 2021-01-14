@@ -5,7 +5,7 @@
             html: "<p>In order to gain complete access to the features on this portal,</p>" +
                 "<p>kindly click on the button below</p>",
             icon: 'info',
-            confirmButtonText: '<a href="#" class="text-white">Continue</a>'
+            confirmButtonText: '<a href="/profile" class="text-white">Continue</a>'
         });
     @endif
 </script>

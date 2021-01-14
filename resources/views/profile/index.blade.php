@@ -23,7 +23,7 @@
                                 <label class="form-label" for="fv-full-name">Full Name</label>
                                 <div class="form-control-wrap">
                                     <input type="text" class="form-control" id="fv-full-name"
-                                           name="fullname" value="{{ $user->fullname }}" readonly>
+                                           name="full_name" value="{{ $user->full_name }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                 <label class="form-label" for="fv-topics">Country</label>
                                 <div class="form-control-wrap ">
                                     <select class="form-control form-select @error('country') is-invalid @enderror"
-                                            id="fv-topics" name="country"
+                                            id="fv-topics" name="country_id"
                                             data-placeholder="Select a country" required>
                                         <option label="empty" value=""></option>
                                         @foreach($countries as $country)

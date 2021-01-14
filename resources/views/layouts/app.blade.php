@@ -13,7 +13,6 @@
     <title>@yield('title') | Beetpool</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('dashlite/css/dashlite.css') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('dashlite/css/theme.css') }}">
 </head>
 
 <body class="nk-body npc-crypto ui-clean pg-auth">

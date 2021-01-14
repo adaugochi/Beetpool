@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Contants\Message;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,10 @@ class LoginController extends Controller
 
     public function login()
     {
+        if(!User::where(['email' => request('email')])){
+            return $this->sendFailedLoginResponse(Message::USER_DOES_NOT_EXIST);
+        }
+
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             if($user->email_verified_at !== NULL) {
@@ -61,16 +66,16 @@ class LoginController extends Controller
             }
             $user->sendEmailVerificationNotification();
         }
-        return $this->sendFailedLoginResponse();
+        return $this->sendFailedLoginResponse(Message::LOGIN_INCORRECT);
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
      * @author Maryfaith Mgbede <adaamgbede@gmail.com>
      */
-    protected function sendFailedLoginResponse()
+    protected function sendFailedLoginResponse($message)
     {
-        return redirect()->back()->with(['error' => Message::LOGIN_INCORRECT]);
+        return redirect()->back()->with(['error' => $message]);
     }
 
     /**

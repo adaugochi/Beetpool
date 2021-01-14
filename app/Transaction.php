@@ -20,10 +20,16 @@ class Transaction extends Model
     const TRANSFER = 'transfer'; // Tran
     const PURCHASE = 'purchase';
     const TRADING_BONUS = 'trading-bonus';
-    const INTEREST = 'interest';
+    const INVESTMENT = 'investment';
 
     const APPROVED = 'approved';
     const PENDING = 'pending';
+    const ACTIVE = 'active';
+
+    public static $ROI = [
+        10 => '10%',
+        20 => '20%'
+    ];
 
     protected $fillable = [
         'user_id',
@@ -87,6 +93,6 @@ class Transaction extends Model
      */
     public function formatDate()
     {
-        return date("jS F Y h:i A", strtotime($this->created_at));
+        return date("M d, Y h:i A", strtotime($this->created_at));
     }
 }

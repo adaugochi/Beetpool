@@ -43,7 +43,9 @@
                                         </div>
                                         @yield('content-side')
                                     </div>
-                                    @yield('content')
+                                    <div class="mt-5">
+                                        @yield('content')
+                                    </div>
                                 </div>
                             </div>
                         </div>

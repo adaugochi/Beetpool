@@ -15,7 +15,7 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname');
+            $table->string('full_name');
             $table->string('email')->unique();
             $table->string('role')->default('system-administration');
             $table->string('is_active')->default(1);

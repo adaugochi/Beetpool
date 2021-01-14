@@ -26,7 +26,7 @@
                                     <span class="sub-text">Transaction ID & Wallet Address</span>
                                 </th>
                                 <th class="nk-tb-col"><span class="sub-text">Status</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Created</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Created At</span></th>
                             </tr>
                             </thead>
                             <tbody>

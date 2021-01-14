@@ -27,6 +27,7 @@ class AdminHomeController extends Controller
 
     public function users()
     {
+
         $users = User::where('email_verified_at', '!==', '')->orderBy('created_at', 'DESC')->get();
         return view('admin.user', compact('users'));
     }

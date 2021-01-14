@@ -45,7 +45,7 @@
                                         {{ str_replace('-', ' ', auth()->user()->role ?: 'user') }}
                                     </div>
                                     <div class="user-name dropdown-indicator">
-                                        {{ auth()->user()->fullname }}
+                                        {{ auth()->user()->full_name }}
                                     </div>
                                 </div>
                             </div>
@@ -55,11 +55,11 @@
                                 <div class="user-card">
                                     <div class="user-avatar">
                                         <span>
-                                            {{ \App\Helper\Utils::initials(auth()->user()->fullname) }}
+                                            {{ \App\Helper\Utils::initials(auth()->user()->full_name) }}
                                         </span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">{{ auth()->user()->fullname }}</span>
+                                        <span class="lead-text">{{ auth()->user()->full_name }}</span>
                                         <span class="sub-text">{{ auth()->user()->email }}</span>
                                     </div>
                                 </div>

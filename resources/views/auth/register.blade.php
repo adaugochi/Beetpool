@@ -19,9 +19,9 @@
         <input type="hidden" name="referral" value="{{ $referral ?? '' }}">
         <div class="form-group">
             <label class="form-label" for="name">Full Name</label>
-            <input type="text" class="form-control form-control-lg @error('fullname') is-invalid @enderror"
-                   id="name" name="fullname" placeholder="Enter your full name" value="{{ old('fullname') }}">
-            @include('elements.error', ['fieldName' => 'fullname'])
+            <input type="text" class="form-control form-control-lg @error('full_name') is-invalid @enderror"
+                   id="name" name="full_name" placeholder="Enter your full name" value="{{ old('full_name') }}">
+            @include('elements.error', ['fieldName' => 'full_name'])
         </div>
         <div class="form-group">
             <label class="form-label" for="email">Email Address</label>
