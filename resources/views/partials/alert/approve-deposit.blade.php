@@ -1,5 +1,4 @@
 <script>
-    let depositVal;
 
     $('.eg-swal-approve').each(function () {
         $(this).on("click", function(e){

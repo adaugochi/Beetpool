@@ -21,4 +21,9 @@ class Utils
     {
         return ($roi/100 * (float)$amount) + (float)$amount;
     }
+
+    public static function formatDate($date)
+    {
+        return date("M d, Y h:i A", strtotime($date));
+    }
 }

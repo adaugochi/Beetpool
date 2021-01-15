@@ -42,14 +42,18 @@ Route::prefix('admin')->group( function () {
 
     // Portal routes
     Route::get('/home', 'AdminHomeController@index')->name('admin.home');
-    Route::get('/deposits', 'TransactionController@getAllDeposits')
-        ->name('admin.deposits')->middleware('auth:admin');
-    Route::post('/approve-deposit', 'TransactionController@approveDeposit')
-        ->name('admin.approve-deposit')->middleware('auth:admin');
-    Route::get('/deposits/{id}', 'TransactionController@showDeposit')
-        ->name('admin.deposit')->middleware('auth:admin');
-    Route::post('/deposits/invest', 'TransactionController@invest')
-        ->name('admin.invest')->middleware('auth:admin');
+    Route::get('/transactions', 'AdminTransactionController@index')
+        ->name('admin.transactions');
+    Route::get('/deposits', 'AdminTransactionController@getAllDeposits')
+        ->name('admin.deposits');
+    Route::post('/approve-deposit', 'AdminTransactionController@approveDeposit')
+        ->name('admin.approve-deposit');
+    Route::get('/transactions/{id}', 'AdminTransactionController@show')
+        ->name('admin.transaction');
+    Route::post('/deposits/invest', 'AdminTransactionController@invest')
+        ->name('admin.invest');
+    Route::get('/investments', 'AdminTransactionController@getAllInvestments')
+        ->name('admin.investments');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

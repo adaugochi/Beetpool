@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Contants\Message;
-use App\Helper\Utils;
-use App\Notifications\DepositApprovalNotification;
 use App\Transaction;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use PHPUnit\Util\Exception;
 
 class TransactionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'])->except('getAllDeposits');
+        $this->middleware(['auth', 'verified']);
     }
 
     public function index()
@@ -78,13 +75,6 @@ class TransactionController extends Controller
         }
     }
 
-    public function getAllDeposits()
-    {
-        $deposits = Transaction::where(['transaction_type' => Transaction::DEPOSIT])
-            ->orderBy('id', 'DESC')->get();
-        return view('admin.deposit', compact('deposits'));
-    }
-
     public function showDeposits()
     {
         $deposits = Transaction::where([
@@ -92,49 +82,5 @@ class TransactionController extends Controller
             'user_id' => auth()->user()->id
         ])->orderBy('id', 'DESC')->get();
         return view('transaction.deposit', compact('deposits'));
-    }
-
-    public function approveDeposit(Request $request)
-    {
-        $deposit = Transaction::where('id', $request->id)->first();
-        $deposit->status = Transaction::APPROVED;
-        Notification::send($deposit->user, new DepositApprovalNotification());
-        if ($deposit->save()){
-            return redirect()->back()->with(['success' => 'Transaction approved successfully']);
-        }
-        return redirect()->back()->with(['error' => 'failed transaction']);
-    }
-
-    public function showDeposit($id)
-    {
-        $deposit = Transaction::findOrFail($id);
-        return view('admin.view-deposit', compact('deposit'));
-    }
-
-    public function invest(Request $request)
-    {
-        $request->validate([
-            'roi' => 'required',
-        ]);
-        $transaction = Transaction::find(request()->id);
-        if (!$transaction) {
-            return redirect()->back()->with(['error' => 'Could not find this transaction']);
-        }
-
-        try {
-            $roi = request()->roi;
-            $transaction->roi = $roi;
-            $transaction->maturity_date = Utils::getDateAfter7Days();
-            $transaction->maturity_status = Transaction::PENDING;
-            $transaction->status = Transaction::ACTIVE;
-            $transaction->transaction_type = Transaction::INVESTMENT;
-            $transaction->expected_return = Utils::getReturns($roi, request()->amount);
-            if (!$transaction->save()) {
-                throw new Exception('Could not initiate this investment');
-            }
-            return redirect()->back()->with(['success' => 'Investment was successful']);
-        } catch (Exception $ex) {
-            return redirect()->back()->with(['error' => $ex->getMessage()]);
-        }
     }
 }

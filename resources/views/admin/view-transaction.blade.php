@@ -1,8 +1,8 @@
 @extends('admin.layouts.main')
-@section('title', 'Deposit')
-@section('back', route('admin.deposits'))
-@section('back-title', 'Deposits')
-@section('content-title', 'KYC / ' . $deposit->user->fullname)
+@section('title', 'Transaction')
+@section('back', route('admin.transactions'))
+@section('back-title', 'Transactions')
+@section('content-title', 'KYC / ' . $transaction->user->fullname)
 @section('content')
     <div class="nk-block">
         <div class="row gy-5">
@@ -18,14 +18,14 @@
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Transaction Type</div>
-                                <div class="data-value">{{ ucfirst($deposit->transaction_type) }}</div>
+                                <div class="data-value">{{ ucfirst($transaction->transaction_type) }}</div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Wallet Address</div>
                                 <div class="data-value word-break">
-                                    {{ $deposit->wallet_address ?? 'Nil' }}
+                                    {{ $transaction->wallet_address ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>
@@ -33,28 +33,28 @@
                             <div class="data-col">
                                 <div class="data-label">Transaction ID</div>
                                 <div class="data-value word-break">
-                                    {{ $deposit->transaction_id ?? 'Nil' }}
+                                    {{ $transaction->transaction_id ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Amount</div>
-                                <div class="data-value">{{ $deposit->amount }} BTH</div>
+                                <div class="data-value">{{ $transaction->amount }} BTH</div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Created At</div>
-                                <div class="data-value">{{ $deposit->formatDate() }}</div>
+                                <div class="data-value">{{ $transaction->formatDate() }}</div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Status</div>
                                 <div class="data-value">
-                                    <span class="badge badge-dim badge-sm badge-outline-{{ $deposit->status == 'approved' ? 'success' : 'warning' }}">
-                                        {{ ucfirst($deposit->status) }}
+                                    <span class="badge badge-dim badge-sm badge-outline-{{ $transaction->status == 'approved' ? 'success' : 'warning' }}">
+                                        {{ ucfirst($transaction->status) }}
                                     </span>
                                 </div>
                             </div>
@@ -62,13 +62,13 @@
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Maturity Status</div>
-                                <div class="data-value">{{ $deposit->maturity_status ?? 'Nil' }}</div>
+                                <div class="data-value">{{ $transaction->maturity_status ?? 'Nil' }}</div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Maturity Date</div>
-                                <div class="data-value">{{ $deposit->maturity_date ?? 'Nil' }}</div>
+                                <div class="data-value">{{ $transaction->maturity_date ?? 'Nil' }}</div>
                             </div>
                         </li>
                     </ul>
@@ -86,26 +86,26 @@
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Full Name</div>
-                                <div class="data-value">{{ $deposit->user->fullname }}</div>
+                                <div class="data-value">{{ $transaction->user->fullname }}</div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Username</div>
-                                <div class="data-value">{{ $deposit->user->username }}</div>
+                                <div class="data-value">{{ $transaction->user->username }}</div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Email Address</div>
-                                <div class="data-value">{{ $deposit->user->email }}</div>
+                                <div class="data-value">{{ $transaction->user->email }}</div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Phone Number</div>
                                 <div class="data-value text-soft">
-                                    {{ $deposit->user->phone_number ?? 'Nil' }}
+                                    {{ $transaction->user->phone_number ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>
@@ -113,7 +113,7 @@
                             <div class="data-col">
                                 <div class="data-label">Country</div>
                                 <div class="data-value">
-                                    {{ $deposit->user->country ?? 'Nil' }}
+                                    {{ $transaction->user->country ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>
@@ -121,7 +121,7 @@
                             <div class="data-col">
                                 <div class="data-label">State</div>
                                 <div class="data-value">
-                                    {{ $deposit->user->state ?? 'Nil' }}
+                                    {{ $transaction->user->state ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>
@@ -130,7 +130,7 @@
                             <div class="data-col">
                                 <div class="data-label">Address</div>
                                 <div class="data-value">
-                                    {{ $deposit->user->address ?? 'Nil' }}
+                                    {{ $transaction->user->address ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>

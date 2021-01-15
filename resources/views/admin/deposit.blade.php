@@ -25,7 +25,7 @@
                                         <span class="sub-text">Transaction ID & Wallet Address</span>
                                     </th>
                                     <th class="nk-tb-col"><span class="sub-text">Status</span></th>
-                                    <th class="nk-tb-col"><span class="sub-text">Created</span></th>
+                                    <th class="nk-tb-col"><span class="sub-text">Created At</span></th>
                                     <th class="nk-tb-col"><span class="sub-text">Action</span></th>
                                 </tr>
                             </thead>
@@ -36,7 +36,7 @@
                                             <div class="user-card">
                                                 <div class="user-info">
                                                     <span class="tb-lead">
-                                                        {{ $deposit->user->fullname }}
+                                                        {{ $deposit->user->full_name }}
                                                         <span class="dot {{ $deposit->status == 'pending' ?
                                                         'dot-warning' : 'dot-success' }} d-md-none ml-1"></span>
                                                     </span>
@@ -82,13 +82,6 @@
                                                     </span>
                                                 </li>
                                                 @endif
-                                                <li class="nk-tb-action-hidden">
-                                                    <a href="{{ route('admin.deposit', $deposit->id) }}"
-                                                       class="btn btn-trigger btn-icon"
-                                                       data-toggle="tooltip" data-placement="top" title="View">
-                                                        <em class="icon ni ni-eye-fill"></em>
-                                                    </a>
-                                                </li>
                                                 <li>
                                                     <div class="dropdown">
                                                         <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
@@ -109,12 +102,6 @@
                                                                     </a>
                                                                 </li>
                                                                 @endif
-                                                                <li>
-                                                                    <a href="{{ route('admin.deposit', $deposit->id) }}">
-                                                                        <em class="icon ni ni-eye"></em>
-                                                                        <span>View Details</span>
-                                                                    </a>
-                                                                </li>
                                                                 @if($deposit->status === 'approved')
                                                                 <li>
                                                                     <a href="#" data-toggle="modal"
@@ -124,7 +111,6 @@
                                                                     </a>
                                                                 </li>
                                                                 @endif
-
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -146,7 +132,7 @@
             @else
                 <div class="empty-state">
                     <span class="empty-state__icon">
-                        <em class="icon-grey ni ni-coins"></em>
+                        <em class="ni ni-coins"></em>
                     </span>
                     <p class="empty-state__description mt-2">No transaction has been made yet.</p>
                 </div>

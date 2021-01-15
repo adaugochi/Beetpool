@@ -28,9 +28,23 @@
                     </li>
 
                     <li class="nk-menu-item">
+                        <a href="{{ route('admin.transactions') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
+                            <span class="nk-menu-text">All Transactions</span>
+                        </a>
+                    </li>
+
+                    <li class="nk-menu-item">
                         <a href="{{ route('admin.deposits') }}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
                             <span class="nk-menu-text">Deposits</span>
+                        </a>
+                    </li>
+
+                    <li class="nk-menu-item">
+                        <a href="{{ route('admin.investments') }}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-invest"></em></span>
+                            <span class="nk-menu-text">Investments</span>
                         </a>
                     </li>
 

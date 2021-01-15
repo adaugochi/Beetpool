@@ -28,7 +28,7 @@
                 <div class="container-fluid">
                     <div class="nk-content-inner">
                         <div class="nk-content-body">
-                            <div class="components-preview wide-md mx-auto">
+                            <div class="components-preview mx-auto">
                                 <div class="nk-block-head nk-block-head-lg wide-sm">
                                     <div class="nk-block-head-content">
                                         <div class="nk-block-head-sub">
