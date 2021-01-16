@@ -38,4 +38,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new UserVerifyEmailNotification());
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
 }

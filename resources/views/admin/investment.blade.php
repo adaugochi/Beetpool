@@ -63,15 +63,20 @@
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span>7</span>
+                                        <span>
+                                            {{ \App\Helper\Utils::getDaysLeft($investment->maturity_date) }}
+                                        </span>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span class="{{ $investment->status == 'pending' ? 'text-warning' : 'text-success' }}">
-                                            {{ ucfirst($investment->status) }}
-                                        </span>
+                                        @if($investment->status == 'active')
+                                            <span class="text-success">{{ ucfirst($investment->status) }}</span>
+                                        @elseif($investment->status == 'closed')
+                                            <span class="text-danger">{{ ucfirst($investment->status) }}</span>
+                                        @endif
                                     </td>
                                     <td class="nk-tb-col nk-tb-col-tools">
                                         <ul class="nk-tb-actions gx-1">
+                                            @if($investment->status == 'active')
                                             <li class="nk-tb-action-hidden">
                                                 <span class="eg-swal-close btn btn-trigger btn-icon"
                                                       data-toggle="tooltip" data-placement="top" title="close">
@@ -83,6 +88,7 @@
                                                     </form>
                                                 </span>
                                             </li>
+                                            @endif
                                             <li>
                                                 <div class="dropdown">
                                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
@@ -90,6 +96,7 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <ul class="link-list-opt no-bdr">
+                                                            @if($investment->status == 'active')
                                                             <li>
                                                                 <a href="#" class="eg-swal-close">
                                                                     <em class="icon ni ni-lock"></em>
@@ -102,6 +109,7 @@
                                                                     </form>
                                                                 </a>
                                                             </li>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                 </div>

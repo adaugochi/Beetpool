@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Utils;
+use App\Notifications\CloseInvestmentNotification;
 use App\Notifications\DepositApprovalNotification;
 use App\Notifications\InvestmentNotification;
 use App\Transaction;
@@ -40,6 +41,9 @@ class AdminTransactionController extends Controller
     public function approveDeposit(Request $request)
     {
         $deposit = Transaction::where('id', $request->id)->first();
+        if (!$deposit) {
+            return redirect()->back()->with(['error' => 'Could not find this transaction']);
+        }
         $deposit->status = Transaction::APPROVED;
         Notification::send($deposit->user, new DepositApprovalNotification());
         if ($deposit->save()){
@@ -84,8 +88,34 @@ class AdminTransactionController extends Controller
 
     public function getAllInvestments()
     {
-        $investments = Transaction::where(['transaction_type' => Transaction::INVESTMENT])
-            ->orderBy('id', 'DESC')->get();
+        $investments = Transaction::whereIn(
+            'transaction_type', [Transaction::INVESTMENT, Transaction::TOP_UP]
+        )->orderBy('id', 'DESC')->get();
         return view('admin.investment', compact('investments'));
+    }
+
+    public function closeInvestment()
+    {
+        DB::beginTransaction();
+        $id = request()->id;
+        $transaction = Transaction::find($id);
+        if (!$transaction) {
+            return redirect()->back()->with(['error' => 'Could not find this transaction']);
+        }
+
+        try {
+            DB::table('transactions')->where('id', $id)->limit(1)
+                ->update([
+                    'maturity_status' => Transaction::MATURED,
+                    'status' => Transaction::CLOSED,
+                    'transaction_type' => Transaction::TOP_UP
+                ]);
+            Notification::send($transaction->user, new CloseInvestmentNotification($transaction->amount));
+            DB::commit();
+            return redirect()->back()->with(['success' => 'Investment was close successful']);
+        } catch (Exception $ex) {
+            DB::rollBack();
+            return redirect()->back()->with(['error' => 'Could not close this investment']);
+        }
     }
 }

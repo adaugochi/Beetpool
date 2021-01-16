@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvestmentNotification extends Notification
+class CloseInvestmentNotification extends Notification
 {
     use Queueable;
 
@@ -43,8 +43,8 @@ class InvestmentNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject(EmailSubjects::SUBJECT_INVESTMENT)
-            ->view('vendor.notifications.investment', [
+            ->subject(EmailSubjects::SUBJECT_CLOSE_INVESTMENT)
+            ->view('vendor.notifications.close-investment', [
                 'name' => $notifiable->full_name, 'amount' => $this->amount
             ]);
     }

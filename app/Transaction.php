@@ -17,14 +17,16 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     const DEPOSIT = 'deposit';
-    const TRANSFER = 'transfer'; // Tran
     const PURCHASE = 'purchase';
     const TRADING_BONUS = 'trading-bonus';
     const INVESTMENT = 'investment';
+    const TOP_UP = 'top-up';
 
     const APPROVED = 'approved';
     const PENDING = 'pending';
     const ACTIVE = 'active';
+    const MATURED = 'matured';
+    const CLOSED = 'closed';
 
     public static $ROI = [
         10 => '10%',
@@ -64,24 +66,51 @@ class Transaction extends Model
         return $this->id;
     }
 
+    public function getTotalTransactions($user_id)
+    {
+        return $this->where(['user_id' => $user_id])->count();
+    }
+
+    public function getTotalInvestments($user_id)
+    {
+        return $this->where('user_id', '=', $user_id)
+            ->whereIn('transaction_type', [self::INVESTMENT, self::TOP_UP])->count();
+    }
+
+    public function getInvestmentEarnings()
+    {
+
+    }
+
+    public function getWithdrawalsEarnings()
+    {
+
+    }
+
+    public function getReferralEarnings()
+    {
+
+    }
+
     public function getBalance($user_id)
     {
         $balance = 0.00;
         $deposit = 0.00;
+        $topup = 0.0;
         $withdraw = 0.00;
 
-        $transactions = $this->where(['user_id' => $user_id, 'status' => self::APPROVED])->get();
+        $transactions = $this->where(['user_id' => $user_id])->get();
         if( sizeof($transactions) > 0 ) {
             foreach ($transactions as $trx) {
                 if( $trx->transaction_type == self::DEPOSIT) {
                     $deposit += (float) $trx->amount;
                 }
 
-                if( $trx->transaction_type == self::PURCHASE) {
-                    $withdraw += (float) $trx->amount;
+                if( $trx->transaction_type == self::TOP_UP) {
+                    $topup += (float) $trx->expected_return;
                 }
             }
-            $balance = (float) ($deposit + $withdraw);
+            $balance = (float) ($deposit + $withdraw + $topup);
         }
 
         return $balance;

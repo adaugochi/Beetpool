@@ -28,11 +28,11 @@
                                 <div class="nk-wg7-stats-group">
                                     <div class="nk-wg7-stats w-50">
                                         <div class="nk-wg7-title text-gray">Total Investment</div>
-                                        <div class="number-lg">5</div>
+                                        <div class="number-lg">{{ $totalInvestment }}</div>
                                     </div>
                                     <div class="nk-wg7-stats w-50">
                                         <div class="nk-wg7-title text-gray">Transactions</div>
-                                        <div class="number">34,405</div>
+                                        <div class="number">{{ $totalTransaction }}</div>
                                     </div>
                                 </div>
                             </div><!-- .nk-wg7 -->

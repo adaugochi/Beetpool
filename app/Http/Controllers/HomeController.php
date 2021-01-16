@@ -23,7 +23,9 @@ class HomeController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
+        $totalTransaction = $this->transaction->getTotalTransactions($userId);
+        $totalInvestment = $this->transaction->getTotalInvestments($userId);
         $wallet_balance = $this->transaction->getBalance($userId);
-        return view('home', compact('wallet_balance'));
+        return view('home', compact('wallet_balance', 'totalTransaction', 'totalInvestment'));
     }
 }

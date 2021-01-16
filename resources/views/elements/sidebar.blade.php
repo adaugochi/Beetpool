@@ -40,8 +40,14 @@
                             </a>
                         </li>
                         <li class="nk-menu-item">
-                            <a href="#" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-package"></em></span>
+                            <a href="{{ route('investment') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-invest"></em></span>
+                                <span class="nk-menu-text">Investments</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{{ route('withdrawal') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-wallet-out"></em></span>
                                 <span class="nk-menu-text">Withdrawals</span>
                             </a>
                         </li>

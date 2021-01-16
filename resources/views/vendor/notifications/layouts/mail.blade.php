@@ -99,18 +99,17 @@
                     <tr>
                         <td style="text-align: center; padding:25px 20px 0;">
                             <p style="font-size: 13px;">Copyright © {{date('Y')}} Beetpool. All rights reserved. .</p>
-
-                            <p style="padding-top: 15px; font-size: 12px;">
-                                This email was sent to you as a registered user of
-                                <a style="color: #6576ff; text-decoration:none;" href="/">beetpool.com</a>.
-                                To update your emails preferences <a style="color: #6576ff; text-decoration:none;" href="#">click here</a>.
-                            </p>
                             <ul class="email-social">
                                 <li><a href="#"><img src="{{ asset('img/socials/facebook.png') }}" alt=""></a></li>
                                 <li><a href="#"><img src="{{ asset('img/socials/twitter.png') }}" alt=""></a></li>
                                 <li><a href="#"><img src="{{ asset('img/socials/youtube.png') }}" alt=""></a></li>
                                 <li><a href="#"><img src="{{ asset('img/socials/medium.png') }}" alt=""></a></li>
                             </ul>
+                            <p style="padding-top: 15px; font-size: 12px;">
+                                This email was sent to you as a registered user of
+                                <a style="color: #6576ff; text-decoration:none;" href="/">beetpool.com</a>.
+                                To update your emails preferences <a style="color: #6576ff; text-decoration:none;" href="#">click here</a>.
+                            </p>
                         </td>
                     </tr>
                     </tbody>

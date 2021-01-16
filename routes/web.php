@@ -54,6 +54,10 @@ Route::prefix('admin')->group( function () {
         ->name('admin.invest');
     Route::get('/investments', 'AdminTransactionController@getAllInvestments')
         ->name('admin.investments');
+    Route::post('/close-investment', 'AdminTransactionController@closeInvestment')
+        ->name('admin.close-investment');
+    Route::get('/withdrawal-requests', 'AdminTransactionController@getAllWithdrawalRequests')
+        ->name('admin.withdrawals');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -67,3 +71,5 @@ Route::get('/deposit/qr-code/{id}', 'TransactionController@showWallet')
     ->name('wallet-address');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/save-profile', 'ProfileController@saveProfile')->name('save-profile');
+Route::get('/investments', 'TransactionController@getAllInvestments')->name('investment');
+Route::get('/withdrawals', 'TransactionController@getAllWithdrawals')->name('withdrawal');

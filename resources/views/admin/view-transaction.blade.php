@@ -2,7 +2,7 @@
 @section('title', 'Transaction')
 @section('back', route('admin.transactions'))
 @section('back-title', 'Transactions')
-@section('content-title', 'KYC / ' . $transaction->user->fullname)
+@section('content-title', 'KYC / ' . $transaction->user->full_name)
 @section('content')
     <div class="nk-block">
         <div class="row gy-5">
@@ -45,6 +45,12 @@
                         </li>
                         <li class="data-item">
                             <div class="data-col">
+                                <div class="data-label">Amount</div>
+                                <div class="data-value">{{ $transaction->amount }} BTH</div>
+                            </div>
+                        </li>
+                        <li class="data-item">
+                            <div class="data-col">
                                 <div class="data-label">Created At</div>
                                 <div class="data-value">{{ $transaction->formatDate() }}</div>
                             </div>
@@ -53,22 +59,46 @@
                             <div class="data-col">
                                 <div class="data-label">Status</div>
                                 <div class="data-value">
-                                    <span class="badge badge-dim badge-sm badge-outline-{{ $transaction->status == 'approved' ? 'success' : 'warning' }}">
-                                        {{ ucfirst($transaction->status) }}
-                                    </span>
+                                    @if($transaction->status == 'pending')
+                                        <span class="badge badge-dim badge-sm badge-outline-warning">
+                                            {{ ucfirst($transaction->status) }}
+                                        </span>
+                                    @elseif($transaction->status == 'closed')
+                                        <span class="badge badge-dim badge-sm badge-outline-danger">
+                                            {{ ucfirst($transaction->status) }}
+                                        </span>
+                                    @else
+                                        <span class="badge badge-dim badge-sm badge-outline-success">
+                                            {{ ucfirst($transaction->status) }}
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Maturity Status</div>
-                                <div class="data-value">{{ $transaction->maturity_status ?? 'Nil' }}</div>
+                                <div class="data-value">
+                                    @if($transaction->status == 'pending')
+                                        <span class="badge badge-dim badge-sm badge-outline-warning">
+                                            {{ ucfirst($transaction->status) }}
+                                        </span>
+                                    @elseif($transaction->status == 'matured')
+                                        <span class="badge badge-dim badge-sm badge-outline-success">
+                                            {{ ucfirst($transaction->status) }}
+                                        </span>
+                                    @else
+                                        <span class="">Nil</span>
+                                    @endif
+                                </div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Maturity Date</div>
-                                <div class="data-value">{{ $transaction->maturity_date ?? 'Nil' }}</div>
+                                <div class="data-value">
+                                    {{ $transaction->maturity_date ? \App\Helper\Utils::formatDate($transaction->maturity_date) : 'Nil' }}
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -86,7 +116,7 @@
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Full Name</div>
-                                <div class="data-value">{{ $transaction->user->fullname }}</div>
+                                <div class="data-value">{{ $transaction->user->full_name }}</div>
                             </div>
                         </li>
                         <li class="data-item">
@@ -113,7 +143,7 @@
                             <div class="data-col">
                                 <div class="data-label">Country</div>
                                 <div class="data-value">
-                                    {{ $transaction->user->country ?? 'Nil' }}
+                                    {{ $transaction->user->country->name ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>

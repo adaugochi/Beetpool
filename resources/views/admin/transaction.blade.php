@@ -51,12 +51,11 @@
                                     <td class="nk-tb-col">
                                         @if($transaction->status == 'pending')
                                             <span class="text-warning">{{ ucfirst($transaction->status) }}</span>
-                                        @elseif($transaction->status == 'close')
+                                        @elseif($transaction->status == 'closed')
                                             <span class="text-danger">{{ ucfirst($transaction->status) }}</span>
                                         @else
                                             <span class="text-success">{{ ucfirst($transaction->status) }}</span>
                                         @endif
-
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ $transaction->formatDate() }}</span>

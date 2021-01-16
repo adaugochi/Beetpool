@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="user-info d-none d-md-block">
                                     <div class="user-status">
-                                        {{ str_replace('-', ' ', auth()->user()->role ?: 'user') }}
+                                        {{ str_replace('-', ' ', auth()->user()->role ?: 'verified user') }}
                                     </div>
                                     <div class="user-name dropdown-indicator">
                                         {{ auth()->user()->full_name }}
@@ -67,13 +67,13 @@
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li>
-                                        <a href="{{ route('profile') }}">
+                                        <a href="{{ auth()->guard('admin')->check() ? '' : route('profile') }}">
                                             <em class="icon ni ni-user-alt"></em>
                                             <span>View Profile</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('profile') }}">
+                                        <a href="{{ auth()->guard('admin')->check() ? '' : route('profile') }}">
                                             <em class="icon ni ni-setting-alt"></em>
                                             <span>Account Setting</span>
                                         </a>
@@ -83,13 +83,14 @@
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li>
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                           document.getElementById('logout-form').submit();">
+                                        <a href="{{ auth()->guard('admin')->check() ? route('admin.logout') : route('logout') }}"
+                                           onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
                                             <em class="icon ni ni-signout"></em>
                                             <span>Sign Out</span>
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}"
-                                              method="POST">
+                                        <form id="logout-form" method="POST"
+                                              action="{{ auth()->guard('admin')->check() ? route('admin.logout') : route('logout') }}">
                                             @csrf
                                         </form>
                                     </li>
