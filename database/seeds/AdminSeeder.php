@@ -18,13 +18,13 @@ class AdminSeeder extends Seeder
                 'full_name' => 'Mary Mgbede',
                 'email' => 'adaamgbede@gmail.com',
                 'role' => 'CTO',
-                'password' => Hash::make(11111111)
+                'password' => Hash::make(getenv('ADMIN_PASSWORD'))
             ],
             [
                 'full_name' => 'Daniel Akadri',
                 'email' => 'support@beetpool.com',
                 'role' => 'system-administrator',
-                'password' => Hash::make(12345678)
+                'password' => Hash::make(getenv('ADMIN_PASSWORD'))
             ],
         ]);
     }

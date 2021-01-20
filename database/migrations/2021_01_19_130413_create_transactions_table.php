@@ -16,17 +16,26 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('transaction_type');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+            $table->string('transaction_type_id');
+            $table->foreign('transaction_type_id')
+                ->references('id')
+                ->on('transaction_types');
+            $table->string('investment_plan_id')->nullable();
+            $table->foreign('investment_plan_id')
+                ->references('id')
+                ->on('investment_plans');
             $table->string('transaction_id')->nullable();
             $table->string('wallet_address')->nullable();
-            $table->string('amount');
-            $table->string('currency')->default('btc');
+            $table->string('amount')->nullable();
+            $table->string('currency')->default('usd');
             $table->string('status')->default('pending');
             $table->string('maturity_status')->nullable();
             $table->timestamp('maturity_date')->nullable();
-            $table->string('roi')->nullable();
             $table->string('expected_return')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('withdrawal_date')->nullable();
             $table->timestamps();
         });
     }

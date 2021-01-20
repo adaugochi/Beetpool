@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int user_id
- * @property string transaction_type
+ * @property string transaction_type_id
  * @property mixed amount
  * @property string currency
  * @property mixed created_at
@@ -16,11 +16,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Transaction extends Model
 {
-    const DEPOSIT = 'deposit';
-    const PURCHASE = 'purchase';
-    const TRADING_BONUS = 'trading-bonus';
-    const INVESTMENT = 'investment';
-    const TOP_UP = 'top-up';
+    const DEPOSIT = 1;
+    const PURCHASE = 6;
+    const TRADING_BONUS = 5;
+    const INVESTMENT = 2;
+    const TOP_UP = 3;
+    const WITHDRAW = 4;
 
     const APPROVED = 'approved';
     const PENDING = 'pending';
@@ -35,7 +36,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'user_id',
-        'transaction_type',
+        'transaction_type_id',
         'transaction_id',
         'amount',
         'currency',
@@ -58,7 +59,7 @@ class Transaction extends Model
     public function createDeposit($postData)
     {
         $this->user_id = auth()->user()->id;
-        $this->transaction_type = self::DEPOSIT;
+        $this->transaction_type_id = self::DEPOSIT;
         $this->amount = $postData['amount'];
         if (!$this->save()) {
             throw new Exception('Could not make a deposit');
@@ -74,7 +75,7 @@ class Transaction extends Model
     public function getTotalInvestments($user_id)
     {
         return $this->where('user_id', '=', $user_id)
-            ->whereIn('transaction_type', [self::INVESTMENT, self::TOP_UP])->count();
+            ->whereIn('transaction_type_id', [self::INVESTMENT, self::TOP_UP])->count();
     }
 
     public function getInvestmentEarnings()
@@ -102,11 +103,11 @@ class Transaction extends Model
         $transactions = $this->where(['user_id' => $user_id])->get();
         if( sizeof($transactions) > 0 ) {
             foreach ($transactions as $trx) {
-                if( $trx->transaction_type == self::DEPOSIT) {
+                if( $trx->transaction_type_id == self::DEPOSIT) {
                     $deposit += (float) $trx->amount;
                 }
 
-                if( $trx->transaction_type == self::TOP_UP) {
+                if( $trx->transaction_type_id == self::TOP_UP) {
                     $topup += (float) $trx->expected_return;
                 }
             }

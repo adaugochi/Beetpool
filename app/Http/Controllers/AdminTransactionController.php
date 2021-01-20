@@ -33,7 +33,7 @@ class AdminTransactionController extends Controller
 
     public function getAllDeposits()
     {
-        $deposits = Transaction::where(['transaction_type' => Transaction::DEPOSIT])
+        $deposits = Transaction::where(['transaction_type_id' => Transaction::DEPOSIT])
             ->orderBy('id', 'DESC')->get();
         return view('admin.deposit', compact('deposits'));
     }
@@ -73,7 +73,7 @@ class AdminTransactionController extends Controller
                     'maturity_date' => Utils::getDateAfter7Days(),
                     'maturity_status' => Transaction::PENDING,
                     'status' => Transaction::ACTIVE,
-                    'transaction_type' => Transaction::INVESTMENT,
+                    'transaction_type_id' => Transaction::INVESTMENT,
                     'expected_return' => Utils::getReturns($roi, $amount),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
@@ -89,7 +89,7 @@ class AdminTransactionController extends Controller
     public function getAllInvestments()
     {
         $investments = Transaction::whereIn(
-            'transaction_type', [Transaction::INVESTMENT, Transaction::TOP_UP]
+            'transaction_type_id', [Transaction::INVESTMENT, Transaction::TOP_UP]
         )->orderBy('id', 'DESC')->get();
         return view('admin.investment', compact('investments'));
     }
@@ -108,7 +108,7 @@ class AdminTransactionController extends Controller
                 ->update([
                     'maturity_status' => Transaction::MATURED,
                     'status' => Transaction::CLOSED,
-                    'transaction_type' => Transaction::TOP_UP
+                    'transaction_type_id' => Transaction::TOP_UP
                 ]);
             Notification::send($transaction->user, new CloseInvestmentNotification($transaction->amount));
             DB::commit();

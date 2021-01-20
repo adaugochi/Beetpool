@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Contants\Message;
+use App\InvestmentPlan;
 use App\Transaction;
 use Illuminate\Http\Request;
 use PHPUnit\Util\Exception;
 
 class TransactionController extends Controller
 {
+    public $transaction;
+
     public function __construct()
     {
+        $this->transaction = new Transaction;
         $this->middleware(['auth', 'verified']);
     }
 
     public function index()
     {
-        $transactions = Transaction::where(['user_id' => auth()->user()->id])->get();
+        $transactions = $this->transaction->where(['user_id' => auth()->user()->id])->get();
         return view('transaction.index', compact('transactions'));
     }
 
@@ -26,14 +30,14 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @author Maryfaith Mgbede <adaamgbede@gmail.com>
      */
-    public function createDeposit(Request $request, Transaction $transaction)
+    public function createDeposit(Request $request)
     {
         $request->validate([
             'amount' => 'required',
         ]);
 
         try {
-            $id = $transaction->createDeposit($request->all());
+            $id = $this->transaction->createDeposit($request->all());
             return redirect(route('wallet-address', $id))
                 ->with(['success' => 'Deposit saved successfully']);
         } catch (\Exception $ex) {
@@ -43,7 +47,7 @@ class TransactionController extends Controller
 
     public function showWallet($id)
     {
-        $deposit = Transaction::findOrFail($id);
+        $deposit = $this->transaction->findOrFail($id);
         return view('transaction.wallet-address', compact('id', 'deposit'));
     }
 
@@ -59,7 +63,7 @@ class TransactionController extends Controller
             'wallet_address' => 'required',
         ]);
 
-        $transaction = Transaction::find(request()->id);
+        $transaction = $this->transaction->find(request()->id);
         if (!$transaction) {
             return redirect(route('deposit'))->with(['error' => 'Could not find this transaction']);
         }
@@ -77,10 +81,27 @@ class TransactionController extends Controller
 
     public function showDeposits()
     {
-        $deposits = Transaction::where([
-            'transaction_type' => Transaction::DEPOSIT,
+        $deposits = $this->transaction->where([
+            'transaction_type_id' => Transaction::DEPOSIT,
             'user_id' => auth()->user()->id
         ])->orderBy('id', 'DESC')->get();
         return view('transaction.deposit', compact('deposits'));
+    }
+    
+    public function getAllInvestments()
+    {
+        $investments = $this->transaction->where([
+            'transaction_type_id' => Transaction::INVESTMENT,
+            'user_id' => auth()->user()->id
+        ])->orderBy('id', 'DESC')->get();
+        return view('transaction.investment', compact('investments'));
+    }
+
+    public function getAllInvestmentPlans()
+    {
+        $userId = auth()->user()->id;
+        $wallet_balance = $this->transaction->getBalance($userId);
+        $plans = InvestmentPlan::all();
+        return view('transaction.investment-plan', compact('wallet_balance', 'plans'));
     }
 }

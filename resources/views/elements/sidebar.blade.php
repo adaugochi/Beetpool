@@ -46,6 +46,12 @@
                             </a>
                         </li>
                         <li class="nk-menu-item">
+                            <a href="{{ route('investment-plan') }}" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-package"></em></span>
+                                <span class="nk-menu-text">Investment Plans</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
                             <a href="{{ route('withdrawal') }}" class="nk-menu-link">
                                 <span class="nk-menu-icon"><em class="icon ni ni-wallet-out"></em></span>
                                 <span class="nk-menu-text">Withdrawals</span>

@@ -23,7 +23,7 @@
                             <div class="nk-wg7">
                                 <div class="nk-wg7-stats">
                                     <div class="nk-wg7-title text-gray">Available balance in BITCOIN</div>
-                                    <div class="number-lg amount">{{ $wallet_balance }}</div>
+                                    <div class="number-lg amount">{{ number_format($wallet_balance) }}</div>
                                 </div>
                                 <div class="nk-wg7-stats-group">
                                     <div class="nk-wg7-stats w-50">
@@ -57,7 +57,7 @@
                                             <div class="amount">
                                                 <span class="currency currency-nio">
                                                     0.00
-                                                </span><!--@convert($wallet_balance)-->
+                                                </span>
                                             </div>
                                         </div>
                                     </a>
@@ -79,7 +79,7 @@
                                             <div class="amount">
                                                 <span class="currency currency-nio">
                                                     0.00
-                                                </span><!--@convert($current_investment)-->
+                                                </span>
                                             </div>
                                         </div>
                                     </a>
@@ -100,7 +100,7 @@
                                             <div class="amount">
                                                 <span class="currency currency-nio">
                                                     0.00
-                                                </span><!--@convert($current_investment)-->
+                                                </span>
                                             </div>
                                         </div>
                                     </a>
@@ -126,7 +126,7 @@
                                             <div class="amount">
                                                 <span class="currency currency-nio">
                                                     0.00
-                                                </span><!--@convert($trading_bonus)-->
+                                                </span>
                                             </div>
                                         </div>
                                     </a>
@@ -148,7 +148,7 @@
                                             <div class="amount">
                                                 <span class="currency currency-nio">
                                                     0.00
-                                                </span><!--@convert($withdrawal_bonus)-->
+                                                </span>
                                             </div>
                                         </div>
                                     </a>
@@ -169,7 +169,7 @@
                                             <div class="amount">
                                                 <span class="currency currency-nio">
                                                     0.00
-                                                </span><!--@convert($withdrawal_bonus)-->
+                                                </span>
                                             </div>
                                         </div>
                                     </a>

@@ -28,8 +28,8 @@
                 <div class="container-fluid">
                     <div class="nk-content-inner">
                         <div class="nk-content-body">
-                            <div class="components-preview mx-auto">
-                                <div class="nk-block-head nk-block-head-lg wide-sm">
+                            <div class="nk-block-head nk-block-head-sm">
+                                <div class="nk-block-between mb-1">
                                     <div class="nk-block-head-content">
                                         <div class="nk-block-head-sub">
                                             <a class="back-to" href="@yield('back')">
@@ -37,10 +37,15 @@
                                                 <span>@yield('back-title')</span>
                                             </a>
                                         </div>
-                                        <h2 class="nk-block-title fw-normal">@yield('content-title')</h2>
+                                        <h3 class="nk-block-title fw-normal">
+                                            @yield('content-title')
+                                        </h3>
                                     </div>
+                                    @yield('content-side')
                                 </div>
-                                @yield('content')
+                                <div class="mt-5">
+                                    @yield('content')
+                                </div>
                             </div>
                         </div>
                     </div>
