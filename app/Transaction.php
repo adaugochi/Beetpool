@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helper\Utils;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed created_at
  * @property mixed id
  * @property mixed to_address
+ * @property string status
  */
 class Transaction extends Model
 {
@@ -29,25 +31,24 @@ class Transaction extends Model
     const MATURED = 'matured';
     const CLOSED = 'closed';
 
-    public static $ROI = [
-        10 => '10%',
-        20 => '20%'
-    ];
-
     protected $fillable = [
-        'user_id',
-        'transaction_type_id',
-        'transaction_id',
-        'amount',
-        'currency',
-        'wallet_address',
-        'status',
-        'investment_package'
+        'user_id', 'transaction_type_id', 'investment_plan_id', 'transaction_id',
+        'amount', 'currency', 'wallet_address', 'status'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(InvestmentPlan::class, 'investment_plan_id');
+    }
+
+    public function trxType()
+    {
+        return $this->belongsTo(TransactionType::class, 'transaction_type_id');
     }
 
     /**
@@ -78,40 +79,97 @@ class Transaction extends Model
             ->whereIn('transaction_type_id', [self::INVESTMENT, self::TOP_UP])->count();
     }
 
-    public function getInvestmentEarnings()
+    public function getActiveInvestments($user_id)
     {
-
+        $investment = 0.00;
+        $transactions = $this->where([
+            'user_id' => $user_id,
+            'status' => self::ACTIVE,
+            'transaction_type_id' => self::INVESTMENT
+        ])->get();
+        foreach ($transactions as $trx) {
+            $investment += (float)$trx->amount;
+        }
+        return $investment;
     }
 
-    public function getWithdrawalsEarnings()
+    public function getInvestmentEarnings($user_id)
     {
-
+        $investment = 0.00;
+        $transactions = $this->where([
+            'user_id' => $user_id,
+            'status' => self::CLOSED,
+            'transaction_type_id' => self::INVESTMENT
+        ])->get();
+        foreach ($transactions as $trx) {
+            $investment += (float)$trx->expected_return - (float)$trx->amount;
+        }
+        return $investment;
     }
 
-    public function getReferralEarnings()
+    public function getWithdrawalsEarnings($user_id)
     {
-
+        $withdraw = 0.00;
+        $transactions = $this->where([
+            'user_id' => $user_id,
+            'status' => self::APPROVED,
+            'transaction_type_id' => self::WITHDRAW
+        ])->get();
+        foreach ($transactions as $trx) {
+            $withdraw += (float)$trx->amount;
+        }
+        return $withdraw;
     }
 
-    public function getBalance($user_id)
+    public function isPending()
+    {
+        return $this->status == self::PENDING;
+    }
+
+    public function isApproved()
+    {
+        return $this->status == self::APPROVED;
+    }
+
+    /**
+     * @param $user_id
+     * @param bool $withdraw
+     * @return float
+     * @throws Exception
+     * @author Adaa Mgbede <adaa@cottacush.com>
+     */
+    public function getBalance($user_id, $withdraw = false)
     {
         $balance = 0.00;
         $deposit = 0.00;
         $topup = 0.0;
-        $withdraw = 0.00;
+        $withdrawal = 0.00;
+        $investment = 0.00;
 
         $transactions = $this->where(['user_id' => $user_id])->get();
         if( sizeof($transactions) > 0 ) {
             foreach ($transactions as $trx) {
-                if( $trx->transaction_type_id == self::DEPOSIT) {
+                if($trx->transaction_type_id == self::DEPOSIT && $trx->isApproved()) {
                     $deposit += (float) $trx->amount;
                 }
+                if($trx->transaction_type_id == self::INVESTMENT) {
+                    $investment += (float) $trx->package->amount;
+                }
+                if ($trx->transaction_type_id == self::TOP_UP) {
+                    if(!$withdraw) {
+                        $topup += (float)$trx->expected_return;
+                    } else {
+                        if (Utils::getDaysLeft($trx->withdrawal_date) == 0) {
+                            $topup += (float)$trx->expected_return;
+                        }
+                    }
+                }
 
-                if( $trx->transaction_type_id == self::TOP_UP) {
-                    $topup += (float) $trx->expected_return;
+                if($trx->transaction_type_id == self::WITHDRAW && $trx->isApproved()) {
+                    $withdrawal += (float) $trx->amount;
                 }
             }
-            $balance = (float) ($deposit + $withdraw + $topup);
+            $balance = (float) ($deposit + $topup - $investment - $withdrawal);
         }
 
         return $balance;

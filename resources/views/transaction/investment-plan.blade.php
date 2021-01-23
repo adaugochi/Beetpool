@@ -6,29 +6,33 @@
 @section('content')
     <div class="nk-block nk-block-lg">
         <div class="row">
-            <form method="post" action="#" class="form-validate">
+            <form method="post" action="{{ route('invest') }}" class="form-validate" id="submitInvest">
+                <input type="hidden" value="{{ $wallet_balance }}" id="walletBalance" name="wallet_balance">
                 @csrf
-                <div class="col-12">
+                <div class="col-md-8">
                     <div class="form-group">
-                        <h3>
-                            Wallet Balance:
-                            <span style="color:green">{{ number_format($wallet_balance) }}</span>
-                        </h3>
-                        <label>
-                            Pick a package that best fit what's on your wallet:
-                            <small style="color:green">Please use the packages below as a guide.</small>
-                        </label>
+                        <div>
+                            <em class="icon ni ni-wallet-saving fs-22px"></em>
+                            <span style="color:green; font-size: 30px">
+                                ${{ number_format($wallet_balance) }}
+                            </span>
+                        </div>
+
                         <div class="form-control-wrap ">
+                            <label for="formSelectInvest">
+                                Pick a package that best fit what's on your wallet:
+                                <small style="color:green">Please use the packages below as a guide.</small>
+                            </label>
                             <select class="form-control form-select @error('key') is-invalid @enderror"
-                                    data-placeholder="Select a package" name="key" required>
+                                    data-placeholder="Select a package" name="key" required id="formSelectInvest">
                                 <option label="empty" value=""></option>
                                 @foreach($plans as $plan)
                                     <option value="{{ $plan->key }}">{{ $plan->name }} - {{ $plan->roi }}%</option>
                                 @endforeach
                             </select>
                             @include('elements.error', ['fieldName' => 'key'])
+                            <span class="fs-11px text-danger font-italic error"></span>
                         </div>
-                        {{--<input type="text" name="amount" class="form-control" placeholder="500.00" required>--}}
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Invest Now</button>

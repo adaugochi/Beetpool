@@ -6,7 +6,9 @@
 @section('content')
     <div class="nk-block mt-3">
         <p>
-            Please try to fill the form below to enable us track your transaction
+            Please try to fill the form below to enable us track your transaction.
+            Ensure to fill in the right details as this will be use to track the deposit made
+            into your wallet.
         </p>
     </div>
     <div class="nk-block">

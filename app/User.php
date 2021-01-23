@@ -8,9 +8,15 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property mixed is_active
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+
+    const ACTIVE = 1;
+    const INACTIVE = 0;
 
     protected $fillable = [
         'full_name', 'email', 'username', 'password'
@@ -43,4 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Country::class, 'country_id');
     }
+
+    public function isActive()
+    {
+        return $this->is_active == self::ACTIVE;
+    }
+
 }

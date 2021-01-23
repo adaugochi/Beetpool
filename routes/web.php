@@ -50,16 +50,12 @@ Route::prefix('admin')->group( function () {
         ->name('admin.approve-deposit');
     Route::get('/transactions/{id}', 'AdminTransactionController@show')
         ->name('admin.transaction');
-    Route::post('/deposits/invest', 'AdminTransactionController@invest')
-        ->name('admin.invest');
     Route::get('/investments', 'AdminTransactionController@getAllInvestments')
         ->name('admin.investments');
     Route::get('/investment-plan', 'InvestmentPlanController@index')
         ->name('admin.investment-plan');
     Route::post('/save-investment-plan', 'InvestmentPlanController@create')
         ->name('admin.save-investment-plan');
-//    Route::post('/save-investment-plan/{key}', 'InvestmentPlanController@create')
-//        ->name('admin.save-investment-plan');
     Route::post('/close-investment', 'AdminTransactionController@closeInvestment')
         ->name('admin.close-investment');
     Route::get('/withdrawal-requests', 'AdminTransactionController@getAllWithdrawalRequests')
@@ -80,3 +76,5 @@ Route::post('/save-profile', 'ProfileController@saveProfile')->name('save-profil
 Route::get('/investments', 'TransactionController@getAllInvestments')->name('investment');
 Route::get('/investment-plans', 'TransactionController@getAllInvestmentPlans')->name('investment-plan');
 Route::get('/withdrawals', 'TransactionController@getAllWithdrawals')->name('withdrawal');
+Route::post('/save-withdrawal', 'TransactionController@saveWithdrawal')->name('save-withdrawal');
+Route::post('/invest', 'TransactionController@saveInvestment')->name('invest');

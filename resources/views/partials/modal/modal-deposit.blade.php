@@ -16,7 +16,7 @@
                                 <label class="form-label" for="default-03">Amount</label>
                                 <div class="form-control-wrap">
                                     <div class="form-icon form-icon-left">
-                                        <em class="icon ni ni-sign-btc"></em>
+                                        <em class="icon ni ni-sign-dollar"></em>
                                     </div>
                                     <input type="text" class="form-control" id="default-03"
                                            name="amount" placeholder="enter an amount" required>

@@ -102,24 +102,9 @@
                                                                     </a>
                                                                 </li>
                                                                 @endif
-                                                                @if($deposit->status === 'approved')
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                          data-target="#modalInvest{{ $deposit->id }}">
-                                                                        <em class="icon ni ni-invest"></em>
-                                                                        <span>Initiate Investment</span>
-                                                                    </a>
-                                                                </li>
-                                                                @endif
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    @include('partials.modal.modal-invest', [
-                                                        'name' => $deposit->user->full_name,
-                                                        'modalId' => 'modalInvest'. $deposit->id,
-                                                        'amount' => $deposit->amount,
-                                                        'id' => $deposit->id
-                                                    ])
                                                 </li>
                                             </ul>
                                         </td>

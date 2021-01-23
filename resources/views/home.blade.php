@@ -22,8 +22,8 @@
                         <div class="card-inner">
                             <div class="nk-wg7">
                                 <div class="nk-wg7-stats">
-                                    <div class="nk-wg7-title text-gray">Available balance in BITCOIN</div>
-                                    <div class="number-lg amount">{{ number_format($wallet_balance) }}</div>
+                                    <div class="nk-wg7-title text-gray">Available balance in Wallet</div>
+                                    <div class="number-lg amount">${{ number_format($wallet_balance) }}</div>
                                 </div>
                                 <div class="nk-wg7-stats-group">
                                     <div class="nk-wg7-stats w-50">
@@ -40,23 +40,45 @@
                     </div><!-- .card -->
                 </div><!-- .nk-block -->
             </div><!-- .col -->
-            <div class="col-lg-7 col-xl-8">
+            <div class="col-lg-7 col-xl-8 display-grid">
                 <div class="nk-block">
                     <div class="row g-2">
+
                         <div class="col-sm-4">
                             <div class="card bg-light">
                                 <div class="nk-wgw sm">
                                     <a class="nk-wgw-inner" href="#">
                                         <div class="nk-wgw-name">
                                             <div class="nk-wgw-icon">
-                                                <em class="icon ni ni-sign-btc"></em>
+                                                <em class="icon ni ni-sign-usd"></em>
                                             </div>
-                                            <h5 class="nk-wgw-title title">Referral Earnings</h5>
+                                            <h5 class="nk-wgw-title title">Active Investment</h5>
                                         </div>
                                         <div class="nk-wgw-balance">
                                             <div class="amount">
                                                 <span class="currency currency-nio">
-                                                    0.00
+                                                    {{ number_format($activeInvestments) }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div><!-- .col -->
+                        <div class="col-sm-4">
+                            <div class="card bg-light">
+                                <div class="nk-wgw sm">
+                                    <a class="nk-wgw-inner" href="#">
+                                        <div class="nk-wgw-name">
+                                            <div class="nk-wgw-icon">
+                                                <em class="icon ni ni-sign-usd"></em>
+                                            </div>
+                                            <h5 class="nk-wgw-title title">Investment Earnings</h5>
+                                        </div>
+                                        <div class="nk-wgw-balance">
+                                            <div class="amount">
+                                                <span class="currency currency-nio">
+                                                    {{ number_format($investmentEarnings) }}
                                                 </span>
                                             </div>
                                         </div>
@@ -71,35 +93,14 @@
                                     <a class="nk-wgw-inner" href="#">
                                         <div class="nk-wgw-name">
                                             <div class="nk-wgw-icon">
-                                                <em class="icon ni ni-sign-btc"></em>
+                                                <em class="icon ni ni-sign-usd"></em>
                                             </div>
-                                            <h5 class="nk-wgw-title title">Active Investment</h5>
+                                            <h5 class="nk-wgw-title title">Available withdrawal balance</h5>
                                         </div>
                                         <div class="nk-wgw-balance">
                                             <div class="amount">
                                                 <span class="currency currency-nio">
-                                                    0.00
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- .col -->
-                        <div class="col-sm-4">
-                            <div class="card bg-light">
-                                <div class="nk-wgw sm">
-                                    <a class="nk-wgw-inner" href="#">
-                                        <div class="nk-wgw-name">
-                                            <div class="nk-wgw-icon">
-                                                <em class="icon ni ni-sign-btc"></em>
-                                            </div>
-                                            <h5 class="nk-wgw-title title">Active Investment</h5>
-                                        </div>
-                                        <div class="nk-wgw-balance">
-                                            <div class="amount">
-                                                <span class="currency currency-nio">
-                                                    0.00
+                                                    {{ $withdrawal_balance < 0 ? 0 :number_format($withdrawal_balance) }}
                                                 </span>
                                             </div>
                                         </div>
@@ -110,74 +111,6 @@
 
                     </div><!-- .row -->
                 </div><!-- .nk-block -->
-                <div class="nk-block nk-block-md">
-                    <div class="row g-2">
-                        <div class="col-sm-4">
-                            <div class="card bg-light">
-                                <div class="nk-wgw sm">
-                                    <a class="nk-wgw-inner" href="#">
-                                        <div class="nk-wgw-name">
-                                            <div class="nk-wgw-icon">
-                                                <em class="icon ni ni-sign-btc"></em>
-                                            </div>
-                                            <h5 class="nk-wgw-title title">Investment Earnings</h5>
-                                        </div>
-                                        <div class="nk-wgw-balance">
-                                            <div class="amount">
-                                                <span class="currency currency-nio">
-                                                    0.00
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- .col -->
-
-                        <div class="col-sm-4">
-                            <div class="card bg-light">
-                                <div class="nk-wgw sm">
-                                    <a class="nk-wgw-inner" href="#">
-                                        <div class="nk-wgw-name">
-                                            <div class="nk-wgw-icon">
-                                                <em class="icon ni ni-sign-btc"></em>
-                                            </div>
-                                            <h5 class="nk-wgw-title title">Total Withdrawals</h5>
-                                        </div>
-                                        <div class="nk-wgw-balance">
-                                            <div class="amount">
-                                                <span class="currency currency-nio">
-                                                    0.00
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- .col -->
-                        <div class="col-sm-4">
-                            <div class="card bg-light">
-                                <div class="nk-wgw sm">
-                                    <a class="nk-wgw-inner" href="#">
-                                        <div class="nk-wgw-name">
-                                            <div class="nk-wgw-icon">
-                                                <em class="icon ni ni-sign-btc"></em>
-                                            </div>
-                                            <h5 class="nk-wgw-title title">Total Withdrawals</h5>
-                                        </div>
-                                        <div class="nk-wgw-balance">
-                                            <div class="amount">
-                                                <span class="currency currency-nio">
-                                                    0.00
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- .col -->
-                    </div><!-- .row -->
-                </div> <!-- .nk-block -->
             </div><!-- .col -->
         </div><!-- .row -->
     </div><!-- .nk-block -->
@@ -217,11 +150,11 @@
                         </div>
                         <div class="nk-refwg-info g-3 flex-column">
                             <div class="nk-refwg-sub">
-                                <div class="title">394</div>
+                                <div class="title">{{ $totalNoReferrals }}</div>
                                 <div class="sub-text">Total Joined</div>
                             </div>
                             <div class="nk-refwg-sub">
-                                <div class="title">548.49</div>
+                                <div class="title">0</div>
                                 <div class="sub-text">Referral Earn</div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@
                 <img style="width:88px; margin-bottom:24px;" src="{{ asset('img/kyc-success.png') }}" alt=Confirmed">
                 <h5 style="margin-bottom: 24px; color: #526484; font-size: 20px; font-weight: 400; line-height: 28px;">Hi {{ $name ?? '' }}<br>Investment Initiated Successfully!</h5>
                 <p style="margin-bottom: 15px; color: #526484; font-size: 16px;">
-                    We have successfully invest your <strong>{{ $amount ?? ''}} BTC</strong> deposit made.
+                    We have successfully invest your <strong>{{ $amount ?? ''}} USD</strong> deposit made.
                     Kindly visit our portal to check your investment process.
                 </p>
                 <p style="margin-bottom: 15px;">

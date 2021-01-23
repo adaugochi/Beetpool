@@ -13,15 +13,17 @@ class Utils
         return $ret;
     }
 
-    public static function getDateAfter7Days()
+    public static function getDateAfterCertainDays($days = "+7 day")
     {
-        $date = strtotime("+7 day", time());
-        return date('Y-m-d: H:i:s', $date);
+        $date = strtotime($days, time());
+        return date('Y-m-d H:i:s', $date);
     }
 
     public static function getReturns($roi, $amount)
     {
-        return ($roi/100 * (float)$amount) + (float)$amount;
+        $dailyProfit = $roi/100 * (float)$amount;
+        $totalProfitFor7Days = $dailyProfit * 7;
+        return $totalProfitFor7Days + (float)$amount;
     }
 
     public static function formatDate($date)

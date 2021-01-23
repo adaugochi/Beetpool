@@ -79,6 +79,16 @@
                             <span class="nk-menu-text">Profile Setting</span>
                         </a>
                     </li>
+                    <li class="nk-menu-item">
+                        <a href="{{ route('logout') }}" class="nk-menu-link"
+                           onclick="event.preventDefault(); document.getElementById('logout').submit();">
+                            <span class="nk-menu-icon"><em class="icon ni ni-signout"></em></span>
+                            <span class="nk-menu-text">Logout</span>
+                        </a>
+                        <form id="logout" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                        </form>
+                    </li>
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->
         </div><!-- .nk-sidebar-content -->

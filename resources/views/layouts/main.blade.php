@@ -57,6 +57,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('dashlite/js/bundle.js') }}"></script>
     <script src="{{ asset('dashlite/js/scripts.js') }}"></script>
 

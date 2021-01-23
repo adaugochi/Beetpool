@@ -39,28 +39,32 @@
                                     </td>
                                     <td class="nk-tb-col">
                                         <span class="tb-amount">
-                                            {{ $transaction->amount }} <span class="currency">BTH</span>
+                                            ${{ $transaction->amount }}
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <span class="tb-amount">
-                                            {{ ucfirst($transaction->transaction_type) }}
+                                            {{ ucfirst($transaction->trxType->name) }}
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <div class="user-card">
                                             <div class="user-info">
                                                     <span class="tb-lead">
-                                                        {{ $transaction->transaction_id }}
+                                                        {{ $transaction->transaction_id ?? 'Nil' }}
                                                     </span>
-                                                <span>{{ $transaction->wallet_address }}</span>
+                                                <span>{{ $transaction->wallet_address ?? 'Nil'}}</span>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span class="{{ $transaction->status == 'pending' ? 'text-warning' : 'text-success' }}">
-                                            {{ ucfirst($transaction->status) }}
-                                        </span>
+                                        @if($transaction->status == 'pending')
+                                            <span class="text-warning">{{ ucfirst($transaction->status) }}</span>
+                                        @elseif($transaction->status == 'closed')
+                                            <span class="text-danger">{{ ucfirst($transaction->status) }}</span>
+                                        @else
+                                            <span class="text-success">{{ ucfirst($transaction->status) }}</span>
+                                        @endif
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ $transaction->formatDate() }}</span>

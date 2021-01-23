@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Contants\Message;
+use App\Helper\Utils;
 use App\InvestmentPlan;
+use App\Notifications\InvestmentNotification;
 use App\Transaction;
 use Illuminate\Http\Request;
-use PHPUnit\Util\Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
+use Exception;
 
 class TransactionController extends Controller
 {
@@ -26,7 +30,6 @@ class TransactionController extends Controller
 
     /**
      * @param Request $request
-     * @param Transaction $transaction
      * @return \Illuminate\Http\RedirectResponse
      * @author Maryfaith Mgbede <adaamgbede@gmail.com>
      */
@@ -90,10 +93,9 @@ class TransactionController extends Controller
     
     public function getAllInvestments()
     {
-        $investments = $this->transaction->where([
-            'transaction_type_id' => Transaction::INVESTMENT,
-            'user_id' => auth()->user()->id
-        ])->orderBy('id', 'DESC')->get();
+        $investments = $this->transaction->where(['user_id' => auth()->user()->id])
+            ->whereIn('transaction_type_id', [Transaction::INVESTMENT, Transaction::TOP_UP])
+            ->orderBy('id', 'DESC')->get();
         return view('transaction.investment', compact('investments'));
     }
 
@@ -103,5 +105,62 @@ class TransactionController extends Controller
         $wallet_balance = $this->transaction->getBalance($userId);
         $plans = InvestmentPlan::all();
         return view('transaction.investment-plan', compact('wallet_balance', 'plans'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @author Adaa Mgbede <adaa@cottacush.com>
+     */
+    public function saveInvestment(Request $request)
+    {
+        DB::beginTransaction();
+        $request->validate([
+            'key' => 'required',
+        ]);
+        $package = InvestmentPlan::where('key',  request()->key)->firstOrFail();
+
+        try {
+            $package->checkInvestmentAmount((float)request()->wallet_balance);
+            $amount = $package->amount;
+
+            DB::table('transactions')
+                ->insert([
+                    'user_id' => auth()->user()->id,
+                    'amount' => $amount,
+                    'maturity_date' => Utils::getDateAfterCertainDays(),
+                    'maturity_status' => Transaction::PENDING,
+                    'status' => Transaction::ACTIVE,
+                    'transaction_type_id' => Transaction::INVESTMENT,
+                    'investment_plan_id' => $package->id,
+                    'expected_return' => Utils::getReturns($package->roi, $amount),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'withdrawal_date' => Utils::getDateAfterCertainDays("+30 day")
+                ]);
+            Notification::send(auth()->user(), new InvestmentNotification($amount));
+            DB::commit();
+            return redirect()->back()->with(['success' => 'Investment was successful']);
+        } catch (Exception $ex) {
+            DB::rollBack();
+            return redirect()->back()->with([
+                'error' => $ex->getMessage() ?? 'Could not initiate this investment'
+            ]);
+        }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws Exception
+     * @author Adaa Mgbede <adaa@cottacush.com>
+     */
+    public function getAllWithdrawals()
+    {
+        $withdrawal_balance = $this->transaction->getBalance(auth()->user()->id, true);
+        return view('transaction.withdrawal', compact('withdrawal_balance'));
+    }
+
+    public function saveWithdrawal()
+    {
+
     }
 }

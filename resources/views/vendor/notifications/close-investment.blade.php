@@ -7,9 +7,10 @@
                 <img style="width:88px; margin-bottom:24px;" src="{{ asset('img/kyc-success.png') }}" alt=Confirmed">
                 <h5 style="margin-bottom: 24px; color: #526484; font-size: 20px; font-weight: 400; line-height: 28px;">Hi {{ $name ?? '' }}<br>Investment Close Successfully!</h5>
                 <p style="margin-bottom: 15px; color: #526484; font-size: 16px;">
-                    We have successfully close your investment of <strong>{{ $amount ?? ''}} BTC</strong>
-                    deposit made and your return has been added to your account. You can now proceed to
-                    request for a withdrawal.
+                    We have successfully close your investment of <strong>{{ $amount ?? ''}} USD</strong>
+                    and your return has been added to your wallet in your account. This return will only
+                    be available for withdrawal after 30days. You can either proceed to
+                    reinvest or request for a withdrawal after 30days.
                     Kindly visit our portal to check your investment process.
                 </p>
                 <p style="margin-bottom: 15px;">

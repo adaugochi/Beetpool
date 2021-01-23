@@ -42,17 +42,13 @@
                                         </div>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span class="tb-amount">
-                                            {{ $investment->amount }} <span class="currency">BTH</span>
-                                        </span>
+                                        <span class="tb-amount">${{ $investment->amount }}</span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ \App\Helper\Utils::formatDate($investment->updated_at) }}</span>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span class="tb-amount">
-                                            {{ $investment->expected_return }} <span class="currency">BTH</span>
-                                        </span>
+                                        <span class="tb-amount">${{ $investment->expected_return }}</span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ \App\Helper\Utils::formatDate($investment->maturity_date) }}</span>
@@ -81,8 +77,8 @@
                                                 <span class="eg-swal-close btn btn-trigger btn-icon"
                                                       data-toggle="tooltip" data-placement="top" title="close">
                                                     <em class="icon ni ni-lock-fill"></em>
-                                                    <form class="closeInvestment" action="/admin/close-investment"
-                                                          method="POST">
+                                                    <form action="{{ route('admin.close-investment') }}"
+                                                          method="POST" class="closeInvestment">
                                                         @csrf
                                                         <input type='hidden' name="id" value="{{ $investment->id }}">
                                                     </form>
@@ -101,8 +97,8 @@
                                                                 <a href="#" class="eg-swal-close">
                                                                     <em class="icon ni ni-lock"></em>
                                                                     <span>Close Investment</span>
-                                                                    <form class="approveInvestment" method="POST"
-                                                                          action="/admin/close-investment">
+                                                                    <form class="closeInvestment" method="POST"
+                                                                          action="{{ route('admin.close-investment') }}">
                                                                         @csrf
                                                                         <input type='hidden' name="id"
                                                                                value="{{ $investment->id }}">
