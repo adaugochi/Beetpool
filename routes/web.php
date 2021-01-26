@@ -77,4 +77,5 @@ Route::get('/investments', 'TransactionController@getAllInvestments')->name('inv
 Route::get('/investment-plans', 'TransactionController@getAllInvestmentPlans')->name('investment-plan');
 Route::get('/withdrawals', 'TransactionController@getAllWithdrawals')->name('withdrawal');
 Route::post('/save-withdrawal', 'TransactionController@saveWithdrawal')->name('save-withdrawal');
+Route::post('/update-withdrawal', 'TransactionController@updateWithdrawal')->name('update-withdrawal');
 Route::post('/invest', 'TransactionController@saveInvestment')->name('invest');

@@ -18,7 +18,7 @@
         <div class="nk-block-head">
             <div class="nk-block-head-content">
                 <div class="nk-block-des">
-                    <p>Overview of all deposit made so far</p>
+                    <p>Overview of all deposits made so far</p>
                 </div>
             </div>
         </div>
@@ -45,14 +45,12 @@
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span class="tb-amount">
-                                            {{ $deposit->amount }} <span class="currency">BTH</span>
-                                        </span>
+                                        <span class="tb-amount">${{ $deposit->amount }}</span>
                                     </td>
                                     <td class="nk-tb-col">
-                                            <span class="{{ $deposit->status == 'pending' ? 'text-warning' : 'text-success' }}">
-                                                {{ ucfirst($deposit->status) }}
-                                            </span>
+                                        <span class="{{ $deposit->status == 'pending' ? 'text-warning' : 'text-success' }}">
+                                            {{ ucfirst($deposit->status) }}
+                                        </span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ $deposit->formatDate() }}</span>

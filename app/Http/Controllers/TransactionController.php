@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Contants\Message;
 use App\Helper\Utils;
 use App\InvestmentPlan;
+use App\Mail\WithdrawalRequestMail;
 use App\Notifications\InvestmentNotification;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Exception;
 
@@ -110,6 +112,7 @@ class TransactionController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws Exception
      * @author Adaa Mgbede <adaa@cottacush.com>
      */
     public function saveInvestment(Request $request)
@@ -119,14 +122,16 @@ class TransactionController extends Controller
             'key' => 'required',
         ]);
         $package = InvestmentPlan::where('key',  request()->key)->firstOrFail();
+        $userId = auth()->user()->id;
+        $wallet_balance = $this->transaction->getBalance($userId);
 
         try {
-            $package->checkInvestmentAmount((float)request()->wallet_balance);
+            $package->checkInvestmentAmount($wallet_balance);
             $amount = $package->amount;
 
             DB::table('transactions')
                 ->insert([
-                    'user_id' => auth()->user()->id,
+                    'user_id' => $userId,
                     'amount' => $amount,
                     'maturity_date' => Utils::getDateAfterCertainDays(),
                     'maturity_status' => Transaction::PENDING,
@@ -155,11 +160,70 @@ class TransactionController extends Controller
      */
     public function getAllWithdrawals()
     {
-        $withdrawal_balance = $this->transaction->getBalance(auth()->user()->id, true);
-        return view('transaction.withdrawal', compact('withdrawal_balance'));
+        $userId = auth()->user()->id;
+        $withdrawals = $this->transaction->where([
+            'user_id' => $userId, 'transaction_type_id' => Transaction::WITHDRAW])->get();
+        $withdrawal_balance = $this->transaction->getBalance($userId, true);
+        return view('transaction.withdrawal', compact('withdrawal_balance', 'withdrawals'));
     }
 
-    public function saveWithdrawal()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws Exception
+     * @author Adaa Mgbede <adaa@cottacush.com>
+     */
+    public function saveWithdrawal(Request $request)
+    {
+        DB::beginTransaction();
+        $request->validate([
+            'amount' => 'required',
+            'wallet_address' => 'required'
+        ]);
+        $user = auth()->user();
+        $withdrawal_balance = $this->transaction->getBalance($user->id, true);
+        $amount = $request->amount;
+        if ($amount > $withdrawal_balance) {
+            return redirect()->back()->with(['info' => Message::WITHDRAW_FAIL]);
+        }
+
+        $trx = $this->transaction->where([
+            'user_id' => $user->id,
+            'transaction_type_id' => Transaction::WITHDRAW,
+            'status' => Transaction::PENDING
+        ]);
+        if ($trx) {
+            return redirect()->back()->with(['info' => 'You already have a pending request.']);
+        }
+
+        $wallet_address = $request->wallet_address;
+        $data = [];
+        $data['full_name'] = $user->full_name;
+        $data['amount'] = $amount;
+        $data['wallet_address'] = $wallet_address;
+        $data['email'] = $user->email;
+
+        try {
+            DB::table('transactions')
+                ->insert([
+                    'user_id' => $user->id,
+                    'amount' => $amount,
+                    'wallet_address' => $wallet_address,
+                    'transaction_type_id' => Transaction::WITHDRAW,
+                    'created_at' => date('Y-m-d H:i:s'),
+                ]);
+            Mail::to(config('app.email'))->send(new WithdrawalRequestMail((object)$data));
+            DB::commit();
+            return redirect()->back()->with(['success' => Message::WITHDRAWAL_REQUEST]);
+        } catch (Exception $ex) {
+            DB::rollBack();
+            return redirect()->back()->with([
+                'error' => $ex->getMessage() ?? 'Could not send this withdrawal request'
+            ]);
+        }
+    }
+
+    public function updateWithdrawal()
     {
 
     }

@@ -6,8 +6,8 @@
 @section('content')
     <div class="nk-block nk-block-lg">
         <div class="row">
+            <input type="hidden" value="{{ $wallet_balance }}" id="walletBalance">
             <form method="post" action="{{ route('invest') }}" class="form-validate" id="submitInvest">
-                <input type="hidden" value="{{ $wallet_balance }}" id="walletBalance" name="wallet_balance">
                 @csrf
                 <div class="col-md-8">
                     <div class="form-group">
