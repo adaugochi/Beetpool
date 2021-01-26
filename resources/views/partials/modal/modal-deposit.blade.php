@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Make An Investment Deposit</h3>
+                <h3 class="modal-title">Make A Deposit</h3>
                 <a href="#" class="close" data-dismiss="modal" aria-label="Close">
                     <em class="icon ni ni-cross"></em>
                 </a>
@@ -18,8 +18,16 @@
                                     <div class="form-icon form-icon-left">
                                         <em class="icon ni ni-sign-dollar"></em>
                                     </div>
-                                    <input type="text" class="form-control" id="default-03"
-                                           name="amount" placeholder="enter an amount" required>
+                                    <input type="number" class="form-control" id="depositAmountUSD"
+                                           name="amount" placeholder="Enter an amount" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-control-wrap">
+                                    <div class="form-icon form-icon-left">
+                                        <em class="icon ni ni-sign-btc"></em>
+                                    </div>
+                                    <input type="text" class="form-control" readonly id="depositAmountBTC">
                                 </div>
                             </div>
                         </div>

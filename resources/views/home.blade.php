@@ -22,13 +22,14 @@
                         <div class="card-inner">
                             <div class="nk-wg7">
                                 <div class="nk-wg7-stats">
-                                    <div class="nk-wg7-title text-gray">Available balance in Wallet</div>
-                                    <div class="number-lg amount">${{ number_format($wallet_balance) }}</div>
+                                    <div class="nk-wg7-title text-gray">Available balance in Bitcoin</div>
+                                    <div class="number-lg" id="walletBalBTC"></div>
                                 </div>
                                 <div class="nk-wg7-stats-group">
                                     <div class="nk-wg7-stats w-50">
-                                        <div class="nk-wg7-title text-gray">Total Investment</div>
-                                        <div class="number-lg">{{ $totalInvestment }}</div>
+                                        <input type="hidden" value="{{$wallet_balance}}" id="walletBalUSD">
+                                        <div class="nk-wg7-title text-gray">Available balance in Dollar</div>
+                                        <div class="number-lg amount">{{ number_format($wallet_balance) }}</div>
                                     </div>
                                     <div class="nk-wg7-stats w-50">
                                         <div class="nk-wg7-title text-gray">Transactions</div>
@@ -71,14 +72,14 @@
                                     <a class="nk-wgw-inner" href="#">
                                         <div class="nk-wgw-name">
                                             <div class="nk-wgw-icon">
-                                                <em class="icon ni ni-sign-usd"></em>
+                                                <em class="icon ni ni-invest"></em>
                                             </div>
                                             <h5 class="nk-wgw-title title">Investment Earnings</h5>
                                         </div>
                                         <div class="nk-wgw-balance">
                                             <div class="amount">
                                                 <span class="currency currency-nio">
-                                                    {{ number_format($investmentEarnings) }}
+                                                    {{ $totalInvestment }}
                                                 </span>
                                             </div>
                                         </div>

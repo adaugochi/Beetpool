@@ -32848,6 +32848,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./invest-validation */ "./resources/js/invest-validation.js");
 
+__webpack_require__(/*! ./currency-conversion */ "./resources/js/currency-conversion.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -32890,6 +32892,48 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/currency-conversion.js":
+/*!*********************************************!*\
+  !*** ./resources/js/currency-conversion.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  var depositAmtFieldInUSD = $('#depositAmountUSD'),
+      depositAmtFieldInBTC = $('#depositAmountBTC');
+  depositAmtFieldInUSD.keyup(function () {
+    var val = $(this).val();
+    axios.get('https://free.currconv.com/api/v7/convert?q=USD_BTC&compact=ultra&apiKey=abdfcd22601b24d84f14').then(function (response) {
+      var rate = response.data.USD_BTC,
+          result = val * rate;
+      depositAmtFieldInBTC.val(result);
+      console.log(rate);
+    })["catch"](function (error) {
+      NioApp.Toast(error, 'error', {
+        position: 'top-right',
+        timeOut: 5000
+      });
+    });
+  });
+  $(document).ready(function () {
+    var walletBalUSD = $('#walletBalUSD').val();
+    axios.get('https://free.currconv.com/api/v7/convert?q=USD_BTC&compact=ultra&apiKey=abdfcd22601b24d84f14').then(function (response) {
+      var rate = response.data.USD_BTC,
+          result = walletBalUSD * rate;
+      $('#walletBalBTC').text(result);
+      console.log(rate);
+    })["catch"](function (error) {
+      NioApp.Toast(error, 'error', {
+        position: 'top-right',
+        timeOut: 5000
+      });
+    });
+  });
+})(jQuery);
 
 /***/ }),
 
