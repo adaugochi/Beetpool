@@ -45,9 +45,7 @@
                                             </div>
                                         </td>
                                         <td class="nk-tb-col">
-                                            <span class="tb-amount">
-                                                {{ $deposit->amount }} <span class="currency">BTH</span>
-                                            </span>
+                                            <span class="tb-amount">${{ $deposit->amount }}</span>
                                         </td>
                                         <td class="nk-tb-col">
                                             <div class="user-card">
@@ -74,8 +72,8 @@
                                                     <span class="eg-swal-approve btn btn-trigger btn-icon"
                                                        data-toggle="tooltip" data-placement="top" title="Approve">
                                                         <em class="icon ni ni-check-fill-c"></em>
-                                                        <form class="approveDeposit" action="/admin/approve-deposit"
-                                                              method="POST">
+                                                        <form class="approveDeposit" method="POST"
+                                                              action="{{ route('admin.approve-deposit') }}">
                                                             @csrf
                                                             <input type='hidden' name="id" value="{{ $deposit->id }}">
                                                         </form>
@@ -95,9 +93,10 @@
                                                                         <em class="icon ni ni-check"></em>
                                                                         <span>Approve</span>
                                                                         <form class="approveDeposit"  method="POST"
-                                                                              action="/admin/approve-deposit">
+                                                                              action="{{ route('admin.approve-deposit') }}">
                                                                             @csrf
-                                                                            <input type='hidden' name="id" value="{{ $deposit->id }}">
+                                                                            <input type='hidden' name="id"
+                                                                                   value="{{ $deposit->id }}">
                                                                         </form>
                                                                     </a>
                                                                 </li>
@@ -119,7 +118,7 @@
                     <span class="empty-state__icon">
                         <em class="ni ni-coins"></em>
                     </span>
-                    <p class="empty-state__description mt-2">No transaction has been made yet.</p>
+                    <p class="empty-state__description mt-2">No deposit has been made yet.</p>
                 </div>
             @endif
         </div>

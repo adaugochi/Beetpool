@@ -164,9 +164,14 @@ class Transaction extends Model
                         }
                     }
                 }
-
-                if($trx->transaction_type_id == self::WITHDRAW && $trx->isApproved()) {
-                    $withdrawal += (float) $trx->amount;
+                if(!$withdraw) {
+                    if ($trx->transaction_type_id == self::WITHDRAW) {
+                        $withdrawal += (float)$trx->amount;
+                    }
+                } else {
+                    if ($trx->transaction_type_id == self::WITHDRAW && $trx->isApproved()) {
+                        $withdrawal += (float)$trx->amount;
+                    }
                 }
             }
             $balance = (float) ($deposit + $topup - $investment - $withdrawal);

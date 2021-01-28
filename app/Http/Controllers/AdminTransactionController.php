@@ -6,6 +6,7 @@ use App\Helper\Utils;
 use App\Notifications\CloseInvestmentNotification;
 use App\Notifications\DepositApprovalNotification;
 use App\Notifications\InvestmentNotification;
+use App\Notifications\WithdrawalRequestNotification;
 use App\Transaction;
 use Exception;
 use Illuminate\Http\Request;
@@ -38,15 +39,20 @@ class AdminTransactionController extends Controller
         return view('admin.deposit', compact('deposits'));
     }
 
-    public function approveDeposit(Request $request)
+    public function approveDepositWithdrawal(Request $request)
     {
-        $deposit = Transaction::where('id', $request->id)->first();
-        if (!$deposit) {
+        $transaction = Transaction::where('id', $request->id)->first();
+        if (!$transaction) {
             return redirect()->back()->with(['error' => 'Could not find this transaction']);
         }
-        $deposit->status = Transaction::APPROVED;
-        Notification::send($deposit->user, new DepositApprovalNotification());
-        if ($deposit->save()){
+
+        $transaction->status = Transaction::APPROVED;
+        if ($transaction->transaction_type_id == Transaction::DEPOSIT) {
+            Notification::send($transaction->user, new DepositApprovalNotification());
+        } else {
+            Notification::send($transaction->user, new WithdrawalRequestNotification());
+        }
+        if ($transaction->save()){
             return redirect()->back()->with(['success' => 'Transaction approved successfully']);
         }
         return redirect()->back()->with(['error' => 'failed transaction']);
@@ -117,5 +123,11 @@ class AdminTransactionController extends Controller
             DB::rollBack();
             return redirect()->back()->with(['error' => 'Could not close this investment']);
         }
+    }
+
+    public function getAllWithdrawalRequests()
+    {
+        $withdrawals = Transaction::where(['transaction_type_id' => Transaction::WITHDRAW])->get();
+        return view('admin.withdrawal', compact('withdrawals'));
     }
 }

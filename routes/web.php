@@ -46,7 +46,7 @@ Route::prefix('admin')->group( function () {
         ->name('admin.transactions');
     Route::get('/deposits', 'AdminTransactionController@getAllDeposits')
         ->name('admin.deposits');
-    Route::post('/approve-deposit', 'AdminTransactionController@approveDeposit')
+    Route::post('/approve-deposit', 'AdminTransactionController@approveDepositWithdrawal')
         ->name('admin.approve-deposit');
     Route::get('/transactions/{id}', 'AdminTransactionController@show')
         ->name('admin.transaction');
@@ -60,6 +60,8 @@ Route::prefix('admin')->group( function () {
         ->name('admin.close-investment');
     Route::get('/withdrawal-requests', 'AdminTransactionController@getAllWithdrawalRequests')
         ->name('admin.withdrawals');
+    Route::post('/approve-withdrawal', 'AdminTransactionController@approveDepositWithdrawal')
+        ->name('admin.approve-withdrawal');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

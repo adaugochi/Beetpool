@@ -58,20 +58,20 @@
                             </a>
                         </li>
 
-                        <li class="nk-menu-item has-sub">
-                            <a href="#" class="nk-menu-link nk-menu-toggle">
-                                <span class="nk-menu-icon"><em class="icon ni ni-money"></em></span>
-                                <span class="nk-menu-text">Purchase</span>
-                            </a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item">
-                                    <a href="#" class="nk-menu-link"><span class="nk-menu-text">Buy</span></a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="#" class="nk-menu-link"><span class="nk-menu-text">Sell</span></a>
-                                </li>
-                            </ul><!-- .nk-menu-sub -->
-                        </li>
+                        {{--<li class="nk-menu-item has-sub">--}}
+                            {{--<a href="#" class="nk-menu-link nk-menu-toggle">--}}
+                                {{--<span class="nk-menu-icon"><em class="icon ni ni-money"></em></span>--}}
+                                {{--<span class="nk-menu-text">Purchase</span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nk-menu-sub">--}}
+                                {{--<li class="nk-menu-item">--}}
+                                    {{--<a href="#" class="nk-menu-link"><span class="nk-menu-text">Buy</span></a>--}}
+                                {{--</li>--}}
+                                {{--<li class="nk-menu-item">--}}
+                                    {{--<a href="#" class="nk-menu-link"><span class="nk-menu-text">Sell</span></a>--}}
+                                {{--</li>--}}
+                            {{--</ul><!-- .nk-menu-sub -->--}}
+                        {{--</li>--}}
                     @endif
                     <li class="nk-menu-item">
                         <a href="{{ route('profile') }}" class="nk-menu-link">
