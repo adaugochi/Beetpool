@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['verify' => true]);
 Route::get('email/verify/{id}', 'Auth\VerificationController@emailVerify')->name('auth.email.verify');
 Route::get('/register', function () {
@@ -62,6 +58,7 @@ Route::prefix('admin')->group( function () {
         ->name('admin.withdrawals');
     Route::post('/approve-withdrawal', 'AdminTransactionController@approveDepositWithdrawal')
         ->name('admin.approve-withdrawal');
+    Route::get('/users', 'AdminHomeController@users')->name('admin.users');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

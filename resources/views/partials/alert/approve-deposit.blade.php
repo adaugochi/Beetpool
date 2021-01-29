@@ -8,7 +8,7 @@
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: `<a href="/admin/approve-deposit" class="text-white"
-                    onclick="event.preventDefault(); ">Yes</a>
+                    onclick="event.preventDefault();">Yes</a>
                     `
             });
 

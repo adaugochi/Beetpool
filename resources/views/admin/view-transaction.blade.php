@@ -18,7 +18,7 @@
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Transaction Type</div>
-                                <div class="data-value">{{ ucfirst($transaction->transaction_type) }}</div>
+                                <div class="data-value">{{ ucfirst($transaction->trxType->name) }}</div>
                             </div>
                         </li>
                         <li class="data-item">

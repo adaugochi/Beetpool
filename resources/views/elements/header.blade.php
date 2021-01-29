@@ -64,22 +64,24 @@
                                     </div>
                                 </div>
                             </div>
+                            @if(auth()->guard('web')->check())
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li>
-                                        <a href="{{ auth()->guard('admin')->check() ? '' : route('profile') }}">
+                                        <a href="{{ route('profile') }}">
                                             <em class="icon ni ni-user-alt"></em>
                                             <span>View Profile</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ auth()->guard('admin')->check() ? '' : route('profile') }}">
+                                        <a href="{{ route('profile') }}">
                                             <em class="icon ni ni-setting-alt"></em>
                                             <span>Account Setting</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
+                            @endif
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li>

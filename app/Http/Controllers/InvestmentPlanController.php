@@ -40,8 +40,8 @@ class InvestmentPlanController extends Controller
         $plan->roi = $request->roi;
 
         if (!$plan->save()) {
-            return redirect()->back()->with(['error' => 'Could not save this plan']);
+            return redirect()->back()->with(['error' => 'Could not save this investment plan']);
         }
-        return redirect()->back()->with(['success' => 'Plan saved successfully']);
+        return redirect()->back()->with(['success' => 'Investment Plan saved successfully']);
     }
 }

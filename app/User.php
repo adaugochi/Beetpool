@@ -10,6 +10,9 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @property mixed is_active
+ * @property mixed address
+ * @property mixed state
+ * @property mixed created_at
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -55,4 +58,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->is_active == self::ACTIVE;
     }
 
+    public function formatDate()
+    {
+        return date("M d, Y h:i A", strtotime($this->created_at));
+    }
 }

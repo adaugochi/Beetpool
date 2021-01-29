@@ -30,7 +30,7 @@ class HomeController extends Controller
         $totalTransaction = $this->transaction->getTotalTransactions($userId);
         $totalInvestment = $this->transaction->getTotalInvestments($userId);
         $activeInvestments = $this->transaction->getActiveInvestments($userId);
-        $investmentEarnings = $this->transaction->getInvestmentEarnings($userId);
+//        $investmentEarnings = $this->transaction->getInvestmentEarnings($userId);
 //        $totalWithdrawals = $this->transaction->getWithdrawalsEarnings($userId);
         $wallet_balance = $this->transaction->getBalance($userId);
         $withdrawal_balance = $this->transaction->getBalance($userId, true);
@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         return view('home', compact(
             'wallet_balance', 'totalTransaction', 'totalInvestment', 'activeInvestments',
-            'totalNoReferrals', 'investmentEarnings', 'withdrawal_balance'
+            'totalNoReferrals', 'withdrawal_balance'
         ));
     }
 }

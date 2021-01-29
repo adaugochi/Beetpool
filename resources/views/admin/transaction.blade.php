@@ -45,7 +45,7 @@
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>
-                                            {{ ucfirst($transaction->transaction_type) }}
+                                            {{ ucfirst($transaction->trxType->name) }}
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">

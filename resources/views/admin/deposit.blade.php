@@ -85,11 +85,12 @@
                                                         <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
                                                            data-toggle="dropdown"><em class="icon ni ni-more-h"></em>
                                                         </a>
+                                                        @if($deposit->status === 'pending')
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <ul class="link-list-opt no-bdr">
-                                                                @if($deposit->status === 'pending')
                                                                 <li>
-                                                                    <a href="#" class="eg-swal-approve">
+                                                                    <a href="#" class="eg-swal-approve"
+                                                                       onclick="event.preventDefault();">
                                                                         <em class="icon ni ni-check"></em>
                                                                         <span>Approve</span>
                                                                         <form class="approveDeposit"  method="POST"
@@ -100,9 +101,9 @@
                                                                         </form>
                                                                     </a>
                                                                 </li>
-                                                                @endif
                                                             </ul>
                                                         </div>
+                                                        @endif
                                                     </div>
                                                 </li>
                                             </ul>
