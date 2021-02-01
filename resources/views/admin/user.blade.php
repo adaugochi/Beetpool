@@ -98,7 +98,7 @@
                     <span class="empty-state__icon">
                         <em class="ni ni-users"></em>
                     </span>
-                    <p class="empty-state__description mt-2">No user has been made yet.</p>
+                    <p class="empty-state__description mt-2">No user has registered yet.</p>
                 </div>
             @endif
         </div>

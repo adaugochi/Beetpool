@@ -80,3 +80,8 @@ Route::get('/withdrawals', 'TransactionController@getAllWithdrawals')->name('wit
 Route::post('/save-withdrawal', 'TransactionController@saveWithdrawal')->name('save-withdrawal');
 Route::post('/update-withdrawal', 'TransactionController@updateWithdrawal')->name('update-withdrawal');
 Route::post('/invest', 'TransactionController@saveInvestment')->name('invest');
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
+});

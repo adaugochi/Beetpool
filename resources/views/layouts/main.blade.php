@@ -7,6 +7,8 @@
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="@@page-discription">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="">
     <!-- Page Title  -->
@@ -43,7 +45,7 @@
                                         </div>
                                         @yield('content-side')
                                     </div>
-                                    <div class="mt-5">
+                                    <div class="mt-4">
                                         @yield('content')
                                     </div>
                                 </div>

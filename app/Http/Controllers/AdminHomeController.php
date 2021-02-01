@@ -48,9 +48,4 @@ class AdminHomeController extends Controller
         $withdrawal_balance = $this->transaction->getBalance($userId, true);
         return view('admin.user-transactions', compact('user', 'withdrawal_balance', 'wallet_balance'));
     }
-
-    public function ete()
-    {
-        return('r');
-    }
 }

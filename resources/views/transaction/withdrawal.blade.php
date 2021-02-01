@@ -14,6 +14,14 @@
     @include('partials.modal.modal-withdrawal', ['new' => true])
 @endsection
 @section('content')
+    <div class="nk-block nk-block-lg">
+        <div>
+            <em class="icon ni ni-wallet-out fs-22px"></em>
+            <span style="color:green; font-size: 30px">
+                ${{ number_format($withdrawal_balance) }}
+            </span>
+        </div>
+    </div>
     <input type="hidden" value="{{ $withdrawal_balance }}" id="withdrawalBalance">
 
     <div class="nk-block nk-block-lg">
