@@ -44,8 +44,8 @@
                                         <span>{{ $user->email }}</span>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span>{{ $user->address ?? '' }},</span>
-                                        <span>{{ $user->state  ?? '' }},</span>
+                                        <span>{{ $user->address ?? '' }}</span>
+                                        <span>{{ $user->state  ?? '' }}</span>
                                         <span>{{ $user->country ? $user->country->name : '' }}</span>
                                     </td>
                                     <td class="nk-tb-col">
@@ -59,6 +59,34 @@
                                     <td class="nk-tb-col">
                                         <span>{{ $user->formatDate() }}</span>
                                     </td>
+                                    {{--<td class="nk-tb-col nk-tb-col-tools">--}}
+                                        {{--<ul class="nk-tb-actions gx-1">--}}
+                                            {{--<li class="nk-tb-action-hidden">--}}
+                                                {{--<a href="{{ route('admin.user-transactions', $user->id) }}"--}}
+                                                   {{--class="btn btn-trigger btn-icon"--}}
+                                                   {{--data-toggle="tooltip" data-placement="top" title="View">--}}
+                                                    {{--<em class="icon ni ni-eye-fill"></em>--}}
+                                                {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="dropdown">--}}
+                                                    {{--<a href="#" class="dropdown-toggle btn btn-icon btn-trigger"--}}
+                                                       {{--data-toggle="dropdown"><em class="icon ni ni-more-h"></em>--}}
+                                                    {{--</a>--}}
+                                                    {{--<div class="dropdown-menu dropdown-menu-right">--}}
+                                                        {{--<ul class="link-list-opt no-bdr">--}}
+                                                            {{--<li>--}}
+                                                                {{--<a href="{{ route('admin.user-transactions', $user->id) }}">--}}
+                                                                    {{--<em class="icon ni ni-eye"></em>--}}
+                                                                    {{--<span>View Transactions</span>--}}
+                                                                {{--</a>--}}
+                                                            {{--</li>--}}
+                                                        {{--</ul>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</td>--}}
                                 </tr><!-- .nk-tb-item  -->
                             @endforeach
                             </tbody>

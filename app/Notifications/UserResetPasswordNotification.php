@@ -48,7 +48,7 @@ class UserResetPasswordNotification extends Notification
             ->subject(EmailSubjects::SUBJECT_RESET_PASSWORD)
             ->view('vendor.notifications.reset-password', compact('fullName'))
             ->action('Reset Password',
-                url(config('app.url') .
+                url(
                     route('password.reset', [$this->token, 'email=' . $notifiable->email], false)
                 )
             );

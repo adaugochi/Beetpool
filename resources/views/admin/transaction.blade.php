@@ -40,7 +40,7 @@
                                     </td>
                                     <td class="nk-tb-col">
                                         <span class="tb-amount">
-                                            {{ $transaction->amount }} <span class="currency">BTH</span>
+                                            ${{ number_format($transaction->amount) }}
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">

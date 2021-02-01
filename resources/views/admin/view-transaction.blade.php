@@ -33,20 +33,14 @@
                             <div class="data-col">
                                 <div class="data-label">Transaction ID</div>
                                 <div class="data-value word-break">
-                                    {{ $transaction->transaction_id ?? 'Nil' }}
+                                    {{ $transaction->trxType->name ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>
                         <li class="data-item">
                             <div class="data-col">
                                 <div class="data-label">Amount</div>
-                                <div class="data-value">{{ $transaction->amount }} BTH</div>
-                            </div>
-                        </li>
-                        <li class="data-item">
-                            <div class="data-col">
-                                <div class="data-label">Amount</div>
-                                <div class="data-value">{{ $transaction->amount }} BTH</div>
+                                <div class="data-value">${{ number_format($transaction->amount) }}</div>
                             </div>
                         </li>
                         <li class="data-item">
@@ -73,6 +67,13 @@
                                         </span>
                                     @endif
                                 </div>
+                            </div>
+                        </li>
+                        <li class="data-item">
+                            <div class="data-col">
+                                <div class="data-label">Expected Return</div>
+                                <div class="data-value">
+                                    ${{ $transaction->expected_return ?? 0 }}</div>
                             </div>
                         </li>
                         <li class="data-item">

@@ -59,6 +59,8 @@ Route::prefix('admin')->group( function () {
     Route::post('/approve-withdrawal', 'AdminTransactionController@approveDepositWithdrawal')
         ->name('admin.approve-withdrawal');
     Route::get('/users', 'AdminHomeController@users')->name('admin.users');
+    Route::get('/users/{id}/transaction', 'AdminHomeController@showUserTransactions')
+        ->name('admin.user-transactions');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

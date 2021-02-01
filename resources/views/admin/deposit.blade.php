@@ -45,7 +45,9 @@
                                             </div>
                                         </td>
                                         <td class="nk-tb-col">
-                                            <span class="tb-amount">${{ $deposit->amount }}</span>
+                                            <span class="tb-amount">
+                                                ${{ number_format($deposit->amount) }}
+                                            </span>
                                         </td>
                                         <td class="nk-tb-col">
                                             <div class="user-card">

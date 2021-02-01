@@ -15,14 +15,21 @@ class AdminSeeder extends Seeder
     {
         DB::table('admins')->insert([
             [
-                'full_name' => 'Mary Mgbede',
+                'full_name' => 'Adaa Mgbede',
                 'email' => 'adaamgbede@gmail.com',
                 'role' => 'CTO',
                 'password' => Hash::make(getenv('ADMIN_PASSWORD'))
             ],
             [
                 'full_name' => 'Daniel Akadri',
-                'email' => 'support@beetpool.com',
+                'email' => 'Litefingers9@gmail.com',
+                'role' => 'system-administrator',
+                'password' => Hash::make(getenv('ADMIN_PASSWORD'))
+            ],
+
+            [
+                'full_name' => 'Drems Sunday',
+                'email' => 'wfrost047@gmail.com',
                 'role' => 'system-administrator',
                 'password' => Hash::make(getenv('ADMIN_PASSWORD'))
             ],

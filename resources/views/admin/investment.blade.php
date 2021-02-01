@@ -42,13 +42,13 @@
                                         </div>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span class="tb-amount">${{ $investment->amount }}</span>
+                                        <span class="tb-amount">${{ number_format($investment->amount) }}</span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ \App\Helper\Utils::formatDate($investment->updated_at) }}</span>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span class="tb-amount">${{ $investment->expected_return }}</span>
+                                        <span class="tb-amount">${{ number_format($investment->expected_return) }}</span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>{{ \App\Helper\Utils::formatDate($investment->maturity_date) }}</span>
@@ -90,9 +90,9 @@
                                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
                                                        data-toggle="dropdown"><em class="icon ni ni-more-h"></em>
                                                     </a>
+                                                    @if($investment->status == 'active')
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <ul class="link-list-opt no-bdr">
-                                                            @if($investment->status == 'active')
                                                             <li>
                                                                 <a href="#" class="eg-swal-close">
                                                                     <em class="icon ni ni-lock"></em>
@@ -105,9 +105,9 @@
                                                                     </form>
                                                                 </a>
                                                             </li>
-                                                            @endif
                                                         </ul>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </li>
                                         </ul>

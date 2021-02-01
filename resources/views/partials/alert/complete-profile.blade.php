@@ -1,5 +1,5 @@
 <script>
-    @if (auth()->user()->is_profile_complete == 0)
+    @if (auth()->user()->is_profile_complete == 0 && Route::current()->getName() != 'profile')
         Swal.fire({
             title: 'Complete your profile',
             html: "<p>In order to gain complete access to the features on this portal,</p>" +

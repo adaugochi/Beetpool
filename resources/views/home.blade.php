@@ -48,7 +48,7 @@
                         <div class="col-sm-4">
                             <div class="card bg-light">
                                 <div class="nk-wgw sm">
-                                    <a class="nk-wgw-inner" href="#">
+                                    <div class="nk-wgw-inner">
                                         <div class="nk-wgw-name">
                                             <div class="nk-wgw-icon">
                                                 <em class="icon ni ni-sign-usd"></em>
@@ -62,7 +62,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         </div><!-- .col -->
@@ -198,7 +198,7 @@
                         </div>
                     </div>
                     <div class="nk-block-content flex-shrink-0">
-                        <a href="#" class="btn btn-lg btn-outline-primary">Get Support Now</a>
+                        <a href="mailto:support@beetpool.com" class="btn btn-lg btn-outline-primary">Get Support Now</a>
                     </div>
                 </div>
             </div><!-- .card-inner -->

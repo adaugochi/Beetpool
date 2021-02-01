@@ -33,7 +33,7 @@
                 <p>If you did not create an account, no further action is required.</p>
                 <p style="margin: 0; font-size: 13px; line-height: 22px; color:#9ea8bb;">
                     This is an automatically generated email please do not reply to this email.
-                    If you face any issues, please contact us at  support@beetpool.com
+                    If you face any issues, please contact us at <a href="mailto:support@beetpool.com">support@beetpool.com</a>
                 </p>
             </td>
         </tr>
