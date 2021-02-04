@@ -58,7 +58,7 @@
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>
-                                            {{ \App\Helper\Utils::getDaysLeft($investment->withdrawal_date) }}
+                                            {{ \App\Helper\Utils::getDaysLeft($investment->withdrawal_date, $investment->created_at) }}
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">

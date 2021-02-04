@@ -60,7 +60,7 @@
                                     </td>
                                     <td class="nk-tb-col">
                                         <span>
-                                            {{ \App\Helper\Utils::getDaysLeft($investment->maturity_date) }}
+                                            {{ \App\Helper\Utils::getDaysLeft($investment->maturity_date, $investment->created_at) }}
                                         </span>
                                     </td>
                                     <td class="nk-tb-col">
@@ -94,7 +94,8 @@
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <ul class="link-list-opt no-bdr">
                                                             <li>
-                                                                <a href="#" class="eg-swal-close">
+                                                                <a href="#" class="eg-swal-close"
+                                                                   onclick="event.preventDefault();">
                                                                     <em class="icon ni ni-lock"></em>
                                                                     <span>Close Investment</span>
                                                                     <form class="closeInvestment" method="POST"

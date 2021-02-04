@@ -159,7 +159,7 @@ class Transaction extends Model
                     if(!$withdraw) {
                         $topup += (float)$trx->expected_return;
                     } else {
-                        if (Utils::getDaysLeft($trx->withdrawal_date) == 0) {
+                        if (Utils::getDaysLeft($trx->withdrawal_date, $trx->created_at) == 0) {
                             $topup += (float)$trx->expected_return;
                         }
                     }

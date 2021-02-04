@@ -45,15 +45,16 @@ class Utils
 
     /**
      * @param $maturityDate
+     * @param $createdDate
      * @return int
      * @throws \Exception
      * @author Adaa Mgbede <adaa@cottacush.com>
      */
-    public static function getDaysLeft($maturityDate)
+    public static function getDaysLeft($maturityDate, $createdDate)
     {
-        $first_date = new DateTime(date('Y-m-d'));
+        $first_date = new DateTime(self::getDate($createdDate));
         $second_date = new DateTime(self::getDate($maturityDate));
         $interval = $first_date->diff($second_date);
-        return $interval->invert == 0 ? $interval->d : 0;
+        return $interval->invert == 0 ? $interval->days : 0;
     }
 }
