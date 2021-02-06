@@ -163,6 +163,7 @@ class TransactionController extends Controller
         $userId = auth()->user()->id;
         $withdrawals = $this->transaction->where([
             'user_id' => $userId, 'transaction_type_id' => Transaction::WITHDRAW])->get();
+        //dd($withdrawals);
         $withdrawal_balance = $this->transaction->getBalance($userId, true);
         return view('transaction.withdrawal', compact('withdrawal_balance', 'withdrawals'));
     }
@@ -191,7 +192,8 @@ class TransactionController extends Controller
             'user_id' => $user->id,
             'transaction_type_id' => Transaction::WITHDRAW,
             'status' => Transaction::PENDING
-        ]);
+        ])->first();
+
         if ($trx) {
             return redirect()->back()->with(['info' => 'You already have a pending request.']);
         }

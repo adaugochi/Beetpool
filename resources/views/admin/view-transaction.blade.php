@@ -33,7 +33,7 @@
                             <div class="data-col">
                                 <div class="data-label">Transaction ID</div>
                                 <div class="data-value word-break">
-                                    {{ $transaction->trxType->name ?? 'Nil' }}
+                                    {{ $transaction->transaction_id ?? 'Nil' }}
                                 </div>
                             </div>
                         </li>

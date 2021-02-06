@@ -8,11 +8,9 @@
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: `<a href="/admin/approve-withdrawal" class="text-white"
-                    onclick="event.preventDefault(); ">Yes</a>
+                    onclick="event.preventDefault(); document.getElementById('approveWithdrawal').submit();">Yes</a>
                     `
             });
-
-            $(this).find('.approveWithdrawal').submit()
         });
     })
 

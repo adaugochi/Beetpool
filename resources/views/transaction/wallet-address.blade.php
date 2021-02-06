@@ -64,9 +64,9 @@
                     <div class="nk-refwg-invite card-inner">
                         <div class="nk-refwg-head g-3">
                             <div class="nk-refwg-title">
-                                <h5 class="title">Beetpool Wallet Address</h5>
+                                <h5 class="title">Beetpool Wallet Addresses</h5>
                                 <div class="title-sub">
-                                    Proceed to make a deposit using this wallet address
+                                    Proceed to make a deposit to either of these wallet addresses
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,37 @@
                                     <em class="icon ni ni-wallet"></em>
                                 </div>
                                 <input type="text" class="form-control copy-text" id="btc1Address"
-                                       value="1PzYA7WrXekN6bKHyroqcxdWggp1grwoBP">
+                                       value="{{ env('WALLET_ADDRESS_1') }}">
+                            </div>
+                        </div>
+                        <div class="nk-refwg-url mt-2">
+                            <div class="form-control-wrap">
+                                <div class="form-clip clipboard-init"
+                                     data-clipboard-target="#btc2Address"
+                                     data-success="Copied" data-text="Copy Address">
+                                    <em class="clipboard-icon icon ni ni-copy"></em>
+                                    <span class="clipboard-text">Copy Address</span>
+                                </div>
+                                <div class="form-icon">
+                                    <em class="icon ni ni-wallet"></em>
+                                </div>
+                                <input type="text" class="form-control copy-text" id="btc2Address"
+                                       value="{{ env('WALLET_ADDRESS_2') }}">
+                            </div>
+                        </div>
+                        <div class="nk-refwg-url mt-2">
+                            <div class="form-control-wrap">
+                                <div class="form-clip clipboard-init"
+                                     data-clipboard-target="#btc1=3Address"
+                                     data-success="Copied" data-text="Copy Address">
+                                    <em class="clipboard-icon icon ni ni-copy"></em>
+                                    <span class="clipboard-text">Copy Address</span>
+                                </div>
+                                <div class="form-icon">
+                                    <em class="icon ni ni-wallet"></em>
+                                </div>
+                                <input type="text" class="form-control copy-text" id="btc3Address"
+                                       value="{{ env('WALLET_ADDRESS_3') }}">
                             </div>
                         </div>
                     </div>

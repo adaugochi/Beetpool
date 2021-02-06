@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="nk-footer-wrap">
             <div class="nk-footer-copyright">
-                &copy; {{date('Y')}} <a href="/">Beetpool.</a> All rights reserved.
+                &copy; {{date('Y') - 2}} <a href="/">Beetpool.</a> All rights reserved.
             </div>
             <div class="nk-footer-links">
                 <ul class="nav nav-sm">

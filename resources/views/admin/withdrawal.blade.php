@@ -62,19 +62,6 @@
                                     </td>
                                     <td class="nk-tb-col nk-tb-col-tools">
                                         <ul class="nk-tb-actions gx-1">
-                                            @if($withdrawal->status === 'pending')
-                                                <li class="nk-tb-action-hidden">
-                                                    <span class="eg-swal-approve-withdrawal btn btn-trigger btn-icon"
-                                                          data-toggle="tooltip" data-placement="top" title="Approve">
-                                                        <em class="icon ni ni-check-fill-c"></em>
-                                                        <form class="approveWithdrawal" method="POST"
-                                                              action="{{ route('admin.approve-withdrawal') }}">
-                                                            @csrf
-                                                            <input type='hidden' name="id" value="{{ $withdrawal->id }}">
-                                                        </form>
-                                                    </span>
-                                                </li>
-                                            @endif
                                             <li>
                                                 <div class="dropdown">
                                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
@@ -84,10 +71,11 @@
                                                         <ul class="link-list-opt no-bdr">
                                                             @if($withdrawal->status === 'pending')
                                                                 <li>
-                                                                    <a href="#" class="eg-swal-approve">
+                                                                    <a href="#" class="eg-swal-approve-withdrawal"
+                                                                       onclick="event.preventDefault();">
                                                                         <em class="icon ni ni-check"></em>
                                                                         <span>Approve</span>
-                                                                        <form class="approveWithdrawal"  method="POST"
+                                                                        <form id="approveWithdrawal"  method="POST"
                                                                               action="{{ route('admin.approve-withdrawal') }}">
                                                                             @csrf
                                                                             <input type='hidden' name="id"

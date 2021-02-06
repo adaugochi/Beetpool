@@ -98,7 +98,7 @@
                     <tbody>
                     <tr>
                         <td style="text-align: center; padding:25px 20px 0;">
-                            <p style="font-size: 13px;">Copyright © {{date('Y')}} Beetpool. All rights reserved. .</p>
+                            <p style="font-size: 13px;">Copyright © {{ date('Y') - 2 }} Beetpool. All rights reserved. .</p>
                             <ul class="email-social">
                                 <li><a href="#"><img src="{{ asset('img/socials/facebook.png') }}" alt=""></a></li>
                                 <li><a href="#"><img src="{{ asset('img/socials/twitter.png') }}" alt=""></a></li>

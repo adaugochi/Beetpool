@@ -8,11 +8,9 @@
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: `<a href="/admin/approve-deposit" class="text-white"
-                    onclick="event.preventDefault();">Yes</a>
+                    onclick="event.preventDefault(); document.getElementById('approveDeposit').submit();">Yes</a>
                     `
             });
-
-            $(this).find('.approveDeposit').submit()
         });
     })
 

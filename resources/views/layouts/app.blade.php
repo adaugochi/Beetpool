@@ -41,7 +41,7 @@
                 </div><!-- .nk-block -->
                 <div class="nk-block nk-auth-footer">
                     <div class="mt-3">
-                        <p>&copy; 2021 Beetpool. All Rights Reserved.</p>
+                        <p>&copy; {{ date('Y') - 2 }} Beetpool. All Rights Reserved.</p>
                     </div>
                 </div><!-- .nk-block -->
             </div><!-- .nk-split-content -->

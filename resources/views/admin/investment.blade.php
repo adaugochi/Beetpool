@@ -45,7 +45,7 @@
                                         <span class="tb-amount">${{ number_format($investment->amount) }}</span>
                                     </td>
                                     <td class="nk-tb-col">
-                                        <span>{{ \App\Helper\Utils::formatDate($investment->updated_at) }}</span>
+                                        <span>{{ $investment->formatDate() }}</span>
                                     </td>
                                     <td class="nk-tb-col">
                                         <span class="tb-amount">${{ number_format($investment->expected_return) }}</span>
@@ -72,19 +72,6 @@
                                     </td>
                                     <td class="nk-tb-col nk-tb-col-tools">
                                         <ul class="nk-tb-actions gx-1">
-                                            @if($investment->status == 'active')
-                                            <li class="nk-tb-action-hidden">
-                                                <span class="eg-swal-close btn btn-trigger btn-icon"
-                                                      data-toggle="tooltip" data-placement="top" title="close">
-                                                    <em class="icon ni ni-lock-fill"></em>
-                                                    <form action="{{ route('admin.close-investment') }}"
-                                                          method="POST" class="closeInvestment">
-                                                        @csrf
-                                                        <input type='hidden' name="id" value="{{ $investment->id }}">
-                                                    </form>
-                                                </span>
-                                            </li>
-                                            @endif
                                             <li>
                                                 <div class="dropdown">
                                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
@@ -98,7 +85,7 @@
                                                                    onclick="event.preventDefault();">
                                                                     <em class="icon ni ni-lock"></em>
                                                                     <span>Close Investment</span>
-                                                                    <form class="closeInvestment" method="POST"
+                                                                    <form id="closeInvestment" method="POST"
                                                                           action="{{ route('admin.close-investment') }}">
                                                                         @csrf
                                                                         <input type='hidden' name="id"

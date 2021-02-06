@@ -8,11 +8,9 @@
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: `<a href="/admin/close-investment" class="text-white"
-                    onclick="event.preventDefault(); ">Yes</a>
+                    onclick="event.preventDefault(); document.getElementById('closeInvestment').submit();">Yes</a>
                     `
             });
-
-            $(this).find('.closeInvestment').submit()
         });
     })
 

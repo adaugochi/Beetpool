@@ -69,19 +69,6 @@
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">
-                                                @if($deposit->status === 'pending')
-                                                <li class="nk-tb-action-hidden">
-                                                    <span class="eg-swal-approve btn btn-trigger btn-icon"
-                                                       data-toggle="tooltip" data-placement="top" title="Approve">
-                                                        <em class="icon ni ni-check-fill-c"></em>
-                                                        <form class="approveDeposit" method="POST"
-                                                              action="{{ route('admin.approve-deposit') }}">
-                                                            @csrf
-                                                            <input type='hidden' name="id" value="{{ $deposit->id }}">
-                                                        </form>
-                                                    </span>
-                                                </li>
-                                                @endif
                                                 <li>
                                                     <div class="dropdown">
                                                         <a href="#" class="dropdown-toggle btn btn-icon btn-trigger"
@@ -95,7 +82,7 @@
                                                                        onclick="event.preventDefault();">
                                                                         <em class="icon ni ni-check"></em>
                                                                         <span>Approve</span>
-                                                                        <form class="approveDeposit"  method="POST"
+                                                                        <form id="approveDeposit"  method="POST"
                                                                               action="{{ route('admin.approve-deposit') }}">
                                                                             @csrf
                                                                             <input type='hidden' name="id"
