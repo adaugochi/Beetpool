@@ -75,10 +75,10 @@
                                                                        onclick="event.preventDefault();">
                                                                         <em class="icon ni ni-check"></em>
                                                                         <span>Approve</span>
-                                                                        <form id="approveWithdrawal"  method="POST"
+                                                                        <form id="approveWithdrawal{{$withdrawal->id}}"  method="POST"
                                                                               action="{{ route('admin.approve-withdrawal') }}">
                                                                             @csrf
-                                                                            <input type='hidden' name="id"
+                                                                            <input type='hidden' name="id" class="id"
                                                                                    value="{{ $withdrawal->id }}">
                                                                         </form>
                                                                     </a>

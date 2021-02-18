@@ -19,11 +19,11 @@ class CreateTransactionsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->string('transaction_type_id');
+            $table->unsignedBigInteger('transaction_type_id');
             $table->foreign('transaction_type_id')
                 ->references('id')
                 ->on('transaction_types');
-            $table->string('investment_plan_id')->nullable();
+            $table->unsignedBigInteger('investment_plan_id')->nullable();
             $table->foreign('investment_plan_id')
                 ->references('id')
                 ->on('investment_plans');

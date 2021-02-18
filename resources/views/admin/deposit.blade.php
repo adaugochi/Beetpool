@@ -82,10 +82,10 @@
                                                                        onclick="event.preventDefault();">
                                                                         <em class="icon ni ni-check"></em>
                                                                         <span>Approve</span>
-                                                                        <form id="approveDeposit"  method="POST"
+                                                                        <form id="approveDeposit{{$deposit->id}}" method="POST"
                                                                               action="{{ route('admin.approve-deposit') }}">
                                                                             @csrf
-                                                                            <input type='hidden' name="id"
+                                                                            <input type='hidden' name="id" class="id"
                                                                                    value="{{ $deposit->id }}">
                                                                         </form>
                                                                     </a>

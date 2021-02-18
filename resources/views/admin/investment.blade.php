@@ -85,10 +85,10 @@
                                                                    onclick="event.preventDefault();">
                                                                     <em class="icon ni ni-lock"></em>
                                                                     <span>Close Investment</span>
-                                                                    <form id="closeInvestment" method="POST"
+                                                                    <form id="closeInvestment{{$investment->id}}" method="POST"
                                                                           action="{{ route('admin.close-investment') }}">
                                                                         @csrf
-                                                                        <input type='hidden' name="id"
+                                                                        <input type='hidden' name="id" class="id"
                                                                                value="{{ $investment->id }}">
                                                                     </form>
                                                                 </a>
