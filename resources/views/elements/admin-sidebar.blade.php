@@ -2,8 +2,7 @@
     <div class="nk-sidebar-element nk-sidebar-head">
         <div class="nk-sidebar-brand">
             <a href="/" class="logo-link nk-sidebar-logo">
-                <h3 class="logo-light logo-img">Beetpool</h3>
-                <h3 class="logo-dark logo-img">Beetpool</h3>
+                <img src="{{ asset('img/logo.png') }}" class="logo-img">
             </a>
         </div>
         <div class="nk-menu-trigger mr-n2">

@@ -5,7 +5,7 @@
 @section('content-title', 'Dashboard')
 @section('content-side')
     <div class="nk-block-head-content">
-        <button type="button" class="btn btn-success mt-4"
+        <button type="button" class="btn btn-blue mt-4"
                 data-toggle="modal" data-target="#modalZoom">
             <em class="icon ni ni-plus"></em>
             <span>Make A Deposit</span>
@@ -18,21 +18,21 @@
         <div class="row gy-gs">
             <div class="col-lg-5 col-xl-4">
                 <div class="nk-block">
-                    <div class="card text-white bg-secondary card-bordered h-100">
+                    <div class="card text-white bg-primary h-100">
                         <div class="card-inner">
                             <div class="nk-wg7">
                                 <div class="nk-wg7-stats">
-                                    <div class="nk-wg7-title text-gray">Available balance in Bitcoin</div>
+                                    <div class="nk-wg7-title text-dark">Available balance in Bitcoin</div>
                                     <div class="number-lg" id="walletBalBTC"></div>
                                 </div>
                                 <div class="nk-wg7-stats-group">
                                     <div class="nk-wg7-stats w-60">
                                         <input type="hidden" value="{{$wallet_balance}}" id="walletBalUSD">
-                                        <div class="nk-wg7-title text-gray">Available balance in Dollar</div>
+                                        <div class="nk-wg7-title text-dark">Available balance in Dollar</div>
                                         <div class="number-lg amount">{{ number_format($wallet_balance) }}</div>
                                     </div>
                                     <div class="nk-wg7-stats w-40">
-                                        <div class="nk-wg7-title text-gray">Transactions</div>
+                                        <div class="nk-wg7-title text-dark">Transactions</div>
                                         <div class="number">{{ $totalTransaction }}</div>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                 <div class="nk-wgw sm">
                                     <div class="nk-wgw-inner">
                                         <div class="nk-wgw-name">
-                                            <div class="nk-wgw-icon">
+                                            <div class="nk-wgw-icon bg-orange">
                                                 <em class="icon ni ni-sign-usd"></em>
                                             </div>
                                             <h5 class="nk-wgw-title title">Active Investment</h5>
@@ -69,9 +69,9 @@
                         <div class="col-sm-4">
                             <div class="card bg-light">
                                 <div class="nk-wgw sm">
-                                    <a class="nk-wgw-inner" href="#">
+                                    <div class="nk-wgw-inner">
                                         <div class="nk-wgw-name">
-                                            <div class="nk-wgw-icon">
+                                            <div class="nk-wgw-icon bg-purple">
                                                 <em class="icon ni ni-invest"></em>
                                             </div>
                                             <h5 class="nk-wgw-title title">Total Investment</h5>
@@ -83,7 +83,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         </div><!-- .col -->
@@ -91,9 +91,9 @@
                         <div class="col-sm-4">
                             <div class="card bg-light">
                                 <div class="nk-wgw sm">
-                                    <a class="nk-wgw-inner" href="#">
+                                    <div class="nk-wgw-inner">
                                         <div class="nk-wgw-name">
-                                            <div class="nk-wgw-icon">
+                                            <div class="nk-wgw-icon bg-success">
                                                 <em class="icon ni ni-sign-usd"></em>
                                             </div>
                                             <h5 class="nk-wgw-title title">Withdrawal Balance</h5>
@@ -105,7 +105,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         </div><!-- .col -->
@@ -178,18 +178,18 @@
                             <rect x="74" y="44" width="20" height="12" rx="1" ry="1" fill="#e5effe" />
                             <rect x="38" y="60" width="20" height="12" rx="1" ry="1" fill="#e5effe" />
                             <rect x="62" y="60" width="20" height="12" rx="1" ry="1" fill="#e5effe" />
-                            <path d="M98,32H22a5.006,5.006,0,0,0-5,5V79a5.006,5.006,0,0,0,5,5H52v8H45a2,2,0,0,0-2,2v4a2,2,0,0,0,2,2H73a2,2,0,0,0,2-2V94a2,2,0,0,0-2-2H66V84H98a5.006,5.006,0,0,0,5-5V37A5.006,5.006,0,0,0,98,32ZM73,94v4H45V94Zm-9-2H54V84H64Zm37-13a3,3,0,0,1-3,3H22a3,3,0,0,1-3-3V37a3,3,0,0,1,3-3H98a3,3,0,0,1,3,3Z" transform="translate(0 -1)" fill="#798bff" />
-                            <path d="M61.444,41H40.111L33,48.143V19.7A3.632,3.632,0,0,1,36.556,16H61.444A3.632,3.632,0,0,1,65,19.7V37.3A3.632,3.632,0,0,1,61.444,41Z" transform="translate(0 -1)" fill="#6576ff" />
-                            <path d="M61.444,41H40.111L33,48.143V19.7A3.632,3.632,0,0,1,36.556,16H61.444A3.632,3.632,0,0,1,65,19.7V37.3A3.632,3.632,0,0,1,61.444,41Z" transform="translate(0 -1)" fill="none" stroke="#6576ff" stroke-miterlimit="10" stroke-width="2" />
+                            <path d="M98,32H22a5.006,5.006,0,0,0-5,5V79a5.006,5.006,0,0,0,5,5H52v8H45a2,2,0,0,0-2,2v4a2,2,0,0,0,2,2H73a2,2,0,0,0,2-2V94a2,2,0,0,0-2-2H66V84H98a5.006,5.006,0,0,0,5-5V37A5.006,5.006,0,0,0,98,32ZM73,94v4H45V94Zm-9-2H54V84H64Zm37-13a3,3,0,0,1-3,3H22a3,3,0,0,1-3-3V37a3,3,0,0,1,3-3H98a3,3,0,0,1,3,3Z" transform="translate(0 -1)" fill="#dba622" />
+                            <path d="M61.444,41H40.111L33,48.143V19.7A3.632,3.632,0,0,1,36.556,16H61.444A3.632,3.632,0,0,1,65,19.7V37.3A3.632,3.632,0,0,1,61.444,41Z" transform="translate(0 -1)" fill="#dba622" />
+                            <path d="M61.444,41H40.111L33,48.143V19.7A3.632,3.632,0,0,1,36.556,16H61.444A3.632,3.632,0,0,1,65,19.7V37.3A3.632,3.632,0,0,1,61.444,41Z" transform="translate(0 -1)" fill="none" stroke="#dba622" stroke-miterlimit="10" stroke-width="2" />
                             <line x1="40" y1="22" x2="57" y2="22" fill="none" stroke="#fffffe" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                             <line x1="40" y1="27" x2="57" y2="27" fill="none" stroke="#fffffe" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                             <line x1="40" y1="32" x2="50" y2="32" fill="none" stroke="#fffffe" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                            <line x1="30.5" y1="87.5" x2="30.5" y2="91.5" fill="none" stroke="#9cabff" stroke-linecap="round" stroke-linejoin="round" />
-                            <line x1="28.5" y1="89.5" x2="32.5" y2="89.5" fill="none" stroke="#9cabff" stroke-linecap="round" stroke-linejoin="round" />
-                            <line x1="79.5" y1="22.5" x2="79.5" y2="26.5" fill="none" stroke="#9cabff" stroke-linecap="round" stroke-linejoin="round" />
-                            <line x1="77.5" y1="24.5" x2="81.5" y2="24.5" fill="none" stroke="#9cabff" stroke-linecap="round" stroke-linejoin="round" />
-                            <circle cx="90.5" cy="97.5" r="3" fill="none" stroke="#9cabff" stroke-miterlimit="10" />
-                            <circle cx="24" cy="23" r="2.5" fill="none" stroke="#9cabff" stroke-miterlimit="10" /></svg>
+                            <line x1="30.5" y1="87.5" x2="30.5" y2="91.5" fill="none" stroke="#dba622" stroke-linecap="round" stroke-linejoin="round" />
+                            <line x1="28.5" y1="89.5" x2="32.5" y2="89.5" fill="none" stroke="#dba622" stroke-linecap="round" stroke-linejoin="round" />
+                            <line x1="79.5" y1="22.5" x2="79.5" y2="26.5" fill="none" stroke="#dba622" stroke-linecap="round" stroke-linejoin="round" />
+                            <line x1="77.5" y1="24.5" x2="81.5" y2="24.5" fill="none" stroke="#dba622" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="90.5" cy="97.5" r="3" fill="none" stroke="#dba622" stroke-miterlimit="10" />
+                            <circle cx="24" cy="23" r="2.5" fill="none" stroke="#dba622" stroke-miterlimit="10" /></svg>
                     </div>
                     <div class="nk-block-content">
                         <div class="nk-block-content-head px-lg-4">

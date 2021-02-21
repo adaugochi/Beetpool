@@ -5,7 +5,7 @@
 @section('content-title', 'Deposit History')
 @section('content-side')
     <div class="nk-block-head-content">
-        <button type="button" class="btn btn-success mt-4"
+        <button type="button" class="btn btn-blue mt-4"
                 data-toggle="modal" data-target="#modalZoom">
             <em class="icon ni ni-plus"></em>
             <span>Make A Deposit</span>

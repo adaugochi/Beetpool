@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success float-right mt-4">
+                    <button type="submit" class="btn btn-blue float-right mt-4">
                         <span>Submit</span>
                         <em class="icon ni ni-arrow-long-right"></em>
                     </button>

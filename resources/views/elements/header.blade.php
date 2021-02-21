@@ -8,8 +8,7 @@
             </div>
             <div class="nk-header-brand d-xl-none">
                 <a href="#" class="logo-link">
-                    <h3 class="logo-light logo-img">Beetpool</h3>
-                    <h3 class="logo-dark logo-img">Beetpool</h3>
+                    <img src="{{ asset('img/logo.png') }}" class="logo-img">
                 </a>
             </div><!-- .nk-header-brand -->
             <div class="nk-header-news d-none d-xl-block">
