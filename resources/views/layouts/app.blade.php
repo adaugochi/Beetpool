@@ -27,8 +27,8 @@
                 </div>
                 <div class="nk-block nk-block-middle nk-auth-body">
                     <div class="brand-logo pb-5">
-                        <a href="#" class="logo-link">
-                            <h3>BEETPOOL</h3>
+                        <a href="/" class="logo-link">
+                            <img src="{{ asset('img/logo.png') }}">
                         </a>
                     </div>
                     @yield('content')
